@@ -1,0 +1,86 @@
+﻿namespace intermediate
+{
+    internal class Kasmok
+    {
+        // Commented out for auto-implemented properties.
+        /*private string name;
+        private string color;
+        private string size;*/
+
+        // Auto-implemented properties. 
+        // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers
+        public string Name { get; set; } = "";
+        public string Color { get; set; } = "";
+        public string Size { get; set; } = "";
+        private int _age;
+
+        public int Age
+        {
+            get { return _age; }
+            set 
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "Age cannot be less than 0");
+                }
+                _age = value;
+            }
+        }
+
+        static Kasmok()
+        {
+            Console.WriteLine("Static consturctor Kasmok has been initialized.");
+        }
+
+        public Kasmok()
+        {
+            // Auto-implementet properties start with capital letter, since you supposedly
+            // don't need to do any validation on it.
+            // https://blog.codinghorror.com/properties-vs-public-variables/
+            // https://stackoverflow.com/questions/1180860/public-fields-versus-automatic-properties
+            Name = "";
+            Color = "";
+            Size = "";
+            // Properties with hand-written get/set logic use "private backing field".
+            // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties
+            _age = 0;
+        }
+
+        public Kasmok(string name, string color, string size)
+        {
+            this.Name = name ?? "";
+            this.Color = color ?? "";
+            this.Size = size ?? "";
+        }
+
+        ~Kasmok()
+        {
+            Console.WriteLine("Finalizer of object Kasmok was reached...");
+        }
+
+        /// <summary>
+        /// This overrides Object's ToString() method.
+        /// </summary>
+        /// <returns>
+        /// Greeting of a Kasmok
+        /// </returns>
+        public override string ToString()
+        {
+            return $"Czesc {Size} {Color} {Name}! (age of {_age.ToString()})";
+        }
+
+        /// <summary>
+        /// This is example for "params", which is like *args in python.
+        /// You can pass both an array of element, or just separated with comas, 
+        /// which is like it was in Python I believe. 
+        /// </summary>
+        public void PiskThat(params string[] pisks)
+        {
+            foreach (string p in pisks)
+            {
+                Console.Write(p + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
