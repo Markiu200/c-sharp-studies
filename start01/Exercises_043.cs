@@ -100,7 +100,7 @@
                 else
                 {
                     speedDifference = speedDifference / 5;
-                    Console.WriteLine(string.Format("You got {0} demetit points", speedDifference));
+                    Console.WriteLine(string.Format("You got {0} demerit points", speedDifference));
                     if (speedDifference > 12) { Console.WriteLine("License Suspended"); }
                 }
             }
