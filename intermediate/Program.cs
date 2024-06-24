@@ -10,6 +10,7 @@ namespace intermediate
             Console.WriteLine("branch-test");
             Console.WriteLine("dodatkowy test");
             Console.WriteLine("text added on GitHub");
+            Console.WriteLine("text added on GitHub again");
         }
     }
 }
