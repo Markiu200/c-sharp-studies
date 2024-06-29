@@ -60,6 +60,14 @@ namespace intermediate.Study01
             Console.WriteLine($"Current amount of pisks: {kasmok.piskAmount}");
             kasmok.AddThePiskWithRef(ref kasmok.piskAmount);
             Console.WriteLine($"New amount of pisks: {kasmok.piskAmount}");
+
+            // Test for "out" keyword
+            Console.WriteLine();
+            Console.WriteLine("\t\"out\" keyword test:");
+            int piskAmountTimes2 = 2; 
+            int piskAmountTimes8 = 8;
+            kasmok.howManyPisksTimesTwo(out piskAmountTimes2, out piskAmountTimes8);
+            Console.WriteLine($"Amount of pisks times 2 and 8: {piskAmountTimes2}, {piskAmountTimes8}");
         }
     }
 }

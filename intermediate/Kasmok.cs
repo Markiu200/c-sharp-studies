@@ -102,5 +102,22 @@
             Console.WriteLine($"Amount of pisks increased by 1");
             baseAmount += 1;
         }
+
+        /// <summary>
+        /// Example for "out". Known use case would be "TryParse" method. 
+        /// It workd basically as "ref", passes arguments by reference (in a way), 
+        /// however it has different requirements, restrictions and use cases.
+        /// Here, most notably, you have assign something to out parameters, and 
+        /// you cannot use them for input (compiler error will pop up).
+        /// https://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/
+        /// </summary>
+        /// <param name="pisks"></param>
+        public void howManyPisksTimesTwo(out int pisks, out int multiPisks)
+        {
+            // Console.WriteLine(pisks);  // compiler error 
+            // Every assignment is required, otherwise error is thrown.
+            pisks = this.piskAmount * 2;
+            multiPisks = this.piskAmount * 8;
+        }
     }
 }
