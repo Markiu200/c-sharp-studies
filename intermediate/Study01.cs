@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Threading.Channels;
 
 namespace intermediate.Study01
 {
@@ -43,9 +44,22 @@ namespace intermediate.Study01
             foreach (Kasmok smo in  kasmoks) Console.WriteLine(smo.ToString());
             kasmok3.Color = "ciemny";
 
+            // Test for "param" keyword
             Console.WriteLine();
             Console.WriteLine("Kasmok, pisk that:");
             kasmok.PiskThat("pisk", "pisk", "piiiisk", "piisk", "piiiiiiisk", "pisk");
+
+            // Test for "ref" keyword
+            Console.WriteLine();
+            Console.WriteLine("\t\"ref\" keyword test:");
+            Console.WriteLine("\tWithout \"ref\":");
+            Console.WriteLine($"Current amount of pisks: {kasmok.piskAmount}");
+            kasmok.AddThePiskNoRef(kasmok.piskAmount);
+            Console.WriteLine($"New amount of pisks: {kasmok.piskAmount}");
+            Console.WriteLine("\tWith \"ref\":");
+            Console.WriteLine($"Current amount of pisks: {kasmok.piskAmount}");
+            kasmok.AddThePiskWithRef(ref kasmok.piskAmount);
+            Console.WriteLine($"New amount of pisks: {kasmok.piskAmount}");
         }
     }
 }

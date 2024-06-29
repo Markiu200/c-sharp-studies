@@ -13,6 +13,7 @@
         public string Color { get; set; } = "";
         public string Size { get; set; } = "";
         private int _age;
+        public int piskAmount = 1;
 
         public int Age
         {
@@ -81,6 +82,25 @@
                 Console.Write(p + " ");
             }
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// Example for "ref" keyword usage. It makes value types behave as reference types
+        /// when passed as an argument. This one doesn't have "ref" and is here for comparison.
+        /// </summary>
+        public void AddThePiskNoRef(int baseAmount)
+        {
+            Console.WriteLine($"Amount of pisks increased by 1");
+            baseAmount += 1;
+        }
+
+        /// Example for "ref" keyword usage. It makes value types behave as reference types
+        /// when passed as an argument. This one has "ref".
+        /// </summary>
+        public void AddThePiskWithRef(ref int baseAmount)
+        {
+            Console.WriteLine($"Amount of pisks increased by 1");
+            baseAmount += 1;
         }
     }
 }
