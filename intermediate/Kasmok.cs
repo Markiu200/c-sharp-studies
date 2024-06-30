@@ -7,14 +7,17 @@
         private string color;
         private string size;*/
 
+        // Just a field.
+        public int piskAmount = 1;
+
         // Auto-implemented properties. 
         // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers
         public string Name { get; set; } = "";
         public string Color { get; set; } = "";
         public string Size { get; set; } = "";
-        private int _age;
-        public int piskAmount = 1;
 
+        // Making a field into a property.
+        private int _age;
         public int Age
         {
             get { return _age; }
@@ -28,15 +31,22 @@
             }
         }
 
+        /// <summary>
+        /// Static constructor is called only once, when the first object of that class is initialized.
+        /// </summary>
         static Kasmok()
         {
             Console.WriteLine("Static consturctor Kasmok has been initialized.");
         }
 
+        /// <summary>
+        /// Typical constructor is called every time an object is initialized. 
+        /// </summary>
         public Kasmok()
         {
             // Auto-implementet properties start with capital letter, since you supposedly
-            // don't need to do any validation on it.
+            // don't need to do any validation on it. Also now those are "get" "set" methods, 
+            // not just fields.
             // https://blog.codinghorror.com/properties-vs-public-variables/
             // https://stackoverflow.com/questions/1180860/public-fields-versus-automatic-properties
             Name = "";
@@ -47,6 +57,12 @@
             _age = 0;
         }
 
+        /// <summary>
+        /// Constructor with parameters.
+        /// </summary>
+        /// <param name="name">Name of kasmok</param>
+        /// <param name="color">Color of kasmok</param>
+        /// <param name="size">Size of kasmok</param>
         public Kasmok(string name, string color, string size)
         {
             this.Name = name ?? "";
@@ -54,6 +70,10 @@
             this.Size = size ?? "";
         }
 
+        /// <summary>
+        /// Finalizer, aka "destructor". This will run when garbage collector removes 
+        /// that specific instance of a class (object).
+        /// </summary>
         ~Kasmok()
         {
             Console.WriteLine("Finalizer of object Kasmok was reached...");
