@@ -71,11 +71,20 @@ namespace intermediate.Study01
             Console.WriteLine("\t\"out\" keyword test:");
             int piskAmountTimes2 = 2; 
             int piskAmountTimes8 = 8;
-            kasmok.howManyPisksTimesTwo(out piskAmountTimes2, out piskAmountTimes8);
+            kasmok.HowManyPisksTimesTwo(out piskAmountTimes2, out piskAmountTimes8);
             Console.WriteLine($"Amount of pisks times 2 and 8: {piskAmountTimes2}, {piskAmountTimes8}");
 
             // Test for "in" keyword
             // https://devblogs.microsoft.com/premier-developer/the-in-modifier-and-the-readonly-structs-in-c/
+
+            // Test for "readonly" things
+            Study01.Title("\"readonly\" test:");
+            Console.WriteLine("Pebbles before doing things with ref-type readonly shennanigans:");
+            kasmok.ListPebbles();
+            Console.WriteLine();
+            kasmok.AddPebble();
+            Console.WriteLine("Pebbles after that:");
+            kasmok.ListPebbles();
         }
     }
 }

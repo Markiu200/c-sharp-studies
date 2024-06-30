@@ -9,6 +9,9 @@
 
         // Just a field.
         public int piskAmount = 1;
+        // readonly field for further testing.
+        public readonly List<String> pebbles = new List<String>();
+
 
         // Auto-implemented properties. 
         // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/object-and-collection-initializers
@@ -143,12 +146,40 @@
         /// https://www.c-sharpcorner.com/UploadFile/ff2f08/ref-vs-out-keywords-in-C-Sharp/
         /// </summary>
         /// <param name="pisks"></param>
-        public void howManyPisksTimesTwo(out int pisks, out int multiPisks)
+        public void HowManyPisksTimesTwo(out int pisks, out int multiPisks)
         {
             // Console.WriteLine(pisks);  // compiler error 
             // Every assignment is required, otherwise error is thrown.
             pisks = this.piskAmount * 2;
             multiPisks = this.piskAmount * 8;
+        }
+
+        /// <summary>
+        /// Method for "readonly" field example. "const" can be used only with
+        /// C# built-in types. For all user-defined types, use "readonly".
+        /// Using 'readonly" modifier may lead to peculiar compiler behavior. (like "defensive copy")
+        /// https://devblogs.microsoft.com/premier-developer/avoiding-struct-and-readonly-reference-performance-pitfalls-with-errorprone-net/
+        /// https://www.developmentsimplyput.com/post/defensive-copy-in-net-c
+        /// https://www.c-sharpcorner.com/article/c-sharp-11-immutable-object-and-defensive-copy/
+        /// "readonly" makes can be set only at initialization or in constructor. 
+        /// It makes sure that the thing will remain the same. Note that it doesn't protect
+        /// elements of reference-type objects, only that it won't be lost or overriden. 
+        /// </summary>
+        public void AddPebble()
+        {
+            // A readonly field cannot be assigned to (except in a constructor
+            // or init-only setter of the type in which the field is defined or a variable initializer
+            // this.pebbles = new List<int>();  
+            
+            this.pebbles.Add("Maleńki kamyczek");  // Modifying things inside referred thing is allowed
+            // This example would be more exciting with struct types.
+        }
+        public void ListPebbles()
+        {
+            foreach (string p in this.pebbles)
+            {
+                Console.Write(p+" ");
+            }
         }
     }
 }
