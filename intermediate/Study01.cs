@@ -68,6 +68,9 @@ namespace intermediate.Study01
             int piskAmountTimes8 = 8;
             kasmok.howManyPisksTimesTwo(out piskAmountTimes2, out piskAmountTimes8);
             Console.WriteLine($"Amount of pisks times 2 and 8: {piskAmountTimes2}, {piskAmountTimes8}");
+
+            // Test for "in" keyword
+            // https://devblogs.microsoft.com/premier-developer/the-in-modifier-and-the-readonly-structs-in-c/
         }
     }
 }
