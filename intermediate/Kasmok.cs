@@ -58,14 +58,25 @@
         }
 
         /// <summary>
-        /// Constructor with parameters.
+        /// Constructor with one parameter. Here it will be used for following constructor 
+        /// and ": this()" notation - "Constructor Chain":
+        /// https://stackoverflow.com/questions/1814953/how-to-do-constructor-chaining-in-c-sharp
+        /// </summary>
+        /// <param name="name">Name of kasmok</param>
+        public Kasmok(string name)
+        {
+            this.Name = name ?? "";
+        }
+
+        /// <summary>
+        /// Constructor with parameters. Uses "Construction Chaining" with constructor above.
         /// </summary>
         /// <param name="name">Name of kasmok</param>
         /// <param name="color">Color of kasmok</param>
         /// <param name="size">Size of kasmok</param>
-        public Kasmok(string name, string color, string size)
+        public Kasmok(string name, string color, string size) : this(name)
         {
-            this.Name = name ?? "";
+            // this.Name = name ?? "";  // not needed due to chain
             this.Color = color ?? "";
             this.Size = size ?? "";
         }
