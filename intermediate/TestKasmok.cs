@@ -22,6 +22,9 @@
         // https://www.udemy.com/course/csharp-intermediate-classes-interfaces-and-oop/learn/lecture/2205242#overview
         // https://learn.microsoft.com/en-us/answers/questions/370576/ildasm-exe-wont-work
         // E.g. for "Name" it creates private "<Name>k__BackingField" and methods "get_Name" and "set_Name".
+        // 
+        // get and set may be decorated with "private" and other access modifiers. "set" may be "init" instead, which
+        // means it can be set only once. 
         public string Name { get; set; } = "";
         public string Color { get; set; } = "";
         public string Size { get; set; } = "";
@@ -51,6 +54,7 @@
             // Here "Age" property will be used, but it could return constant as well.
             get { return Age + 20; }
             // Setter is not required for properties. This will make it read only. 
+            set { _age = _age + 20; }
         }
 
 

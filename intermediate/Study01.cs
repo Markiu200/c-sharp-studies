@@ -93,7 +93,15 @@ namespace intermediate.Study01
             Console.WriteLine($"Age of kasmok: {kasmok.Age}. OlderAge: {kasmok.OlderAge}");
             // Setting field not possible - without setter property is read only. 
             // kasmok.OlderAge = 2;  //  Error CS0200  Property or indexer 'Kasmok.OlderAge' cannot be assigned to --it is read only
+            // 
+            // < setter was set after this point >
+            // If setter is set, but it doesn't have any backing field, passed value is kind of lost. 
+            // After all, properties were meant to be quicker way of making two separate methods, and methods 
+            // can do anything you like, they aren't necessarily bound to an object field. 
+            kasmok.OlderAge = 4;
+            Console.WriteLine($"Age of kasmok: {kasmok.Age}. OlderAge: {kasmok.OlderAge}");
 
+            
         }
     }
 }
