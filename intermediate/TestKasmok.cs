@@ -11,6 +11,8 @@
         public int piskAmount = 1;
         // readonly field for further testing.
         public readonly List<String> pebbles = new List<String>();
+        // Dictionary for indexer example.
+        private readonly Dictionary<string, string> _dictionary = new Dictionary<string, string>();
 
 
         // Auto-implemented properties. 
@@ -39,6 +41,7 @@
             get { return _age; }
             set 
             {
+                // Keyword "value" represents what was passed into the property.
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "Age cannot be less than 0");
@@ -54,7 +57,24 @@
             // Here "Age" property will be used, but it could return constant as well.
             get { return Age + 20; }
             // Setter is not required for properties. This will make it read only. 
+            // Since it's not auto-implemented property, no backing field will be created, even though setter is created.
             set { _age = _age + 20; }
+        }
+
+
+        // Indexer using _dictionary field
+        // Indexers are like properties basically. They let you do "object[index]", like arrays and lists. 
+        // https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-8.0
+        // https://www.geeksforgeeks.org/c-sharp-dictionary-with-examples/
+        public string this[string key]
+        {
+            // Can use "TryGetValue" instead of this ternary operator.
+            // https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2.trygetvalue?view=net-8.0
+            get
+            {
+                return _dictionary.ContainsKey(key) ? _dictionary[key] : ""; 
+            }
+            set { _dictionary[key] = value; }
         }
 
 

@@ -101,7 +101,12 @@ namespace intermediate.Study01
             kasmok.OlderAge = 4;
             Console.WriteLine($"Age of kasmok: {kasmok.Age}. OlderAge: {kasmok.OlderAge}");
 
-            
+            // Test for indexers
+            Study01.Title("Indexers example:");
+            Console.WriteLine($"Is kasmok poor? {kasmok["isPoor"]}");
+            Console.WriteLine("Making him poor.");
+            kasmok["isPoor"] = "yes.";
+            Console.WriteLine($"Is kasmok poor? {kasmok["isPoor"]}");
         }
     }
 }
