@@ -1,6 +1,6 @@
 ﻿namespace intermediate
 {
-    internal class Kasmok
+    internal class TestKasmok
     {
         // Commented out for auto-implemented properties.
         /*private string name;
@@ -57,7 +57,7 @@
         /// <summary>
         /// Static constructor is called only once, when the first object of that class is initialized.
         /// </summary>
-        static Kasmok()
+        static TestKasmok()
         {
             Console.WriteLine("Static consturctor Kasmok has been initialized.");
         }
@@ -65,7 +65,7 @@
         /// <summary>
         /// Typical constructor is called every time an object is initialized. 
         /// </summary>
-        public Kasmok()
+        public TestKasmok()
         {
             // Auto-implementet properties start with capital letter, since you supposedly
             // don't need to do any validation on it. Also now those are "get" "set" methods, 
@@ -86,7 +86,7 @@
         /// https://stackoverflow.com/questions/1814953/how-to-do-constructor-chaining-in-c-sharp
         /// </summary>
         /// <param name="name">Name of kasmok</param>
-        public Kasmok(string name)
+        public TestKasmok(string name)
         {
             this.Name = name ?? "";
         }
@@ -97,7 +97,7 @@
         /// <param name="name">Name of kasmok</param>
         /// <param name="color">Color of kasmok</param>
         /// <param name="size">Size of kasmok</param>
-        public Kasmok(string name, string color, string size) : this(name)
+        public TestKasmok(string name, string color, string size) : this(name)
         {
             // this.Name = name ?? "";  // not needed due to chain
             this.Color = color ?? "";
@@ -108,7 +108,7 @@
         /// Finalizer, aka "destructor". This will run when garbage collector removes 
         /// that specific instance of a class (object).
         /// </summary>
-        ~Kasmok()
+        ~TestKasmok()
         {
             Console.WriteLine("Finalizer of object Kasmok was reached...");
         }

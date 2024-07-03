@@ -16,12 +16,12 @@ namespace intermediate.Study01
         {
             Study01.Title(@"Static and non-static constructors test:");
             Console.WriteLine("Hello, World! Creating an instance of Kasmok class...");
-            var kasmok = new Kasmok("smok", "bialy", "duzy");
+            var kasmok = new TestKasmok("smok", "bialy", "duzy");
             Console.WriteLine(kasmok.ToString());
 
             Console.WriteLine();
             Console.WriteLine("Creating an instance of Kasmok class...");
-            var kasmok2 = new Kasmok("smok", "niebieski", "duzy");
+            var kasmok2 = new TestKasmok("smok", "niebieski", "duzy");
             Console.WriteLine("Make note how static initializer was not triggered second time.");
 
             Study01.Title(@"Finalizer test, might show nothing...:");
@@ -30,7 +30,7 @@ namespace intermediate.Study01
             GC.WaitForPendingFinalizers();
 
             Study01.Title("\".ToString\" object override test:");
-            var kasmok3 = new Kasmok("smok", "czerwony", "duzy");
+            var kasmok3 = new TestKasmok("smok", "czerwony", "duzy");
             Console.WriteLine(kasmok3.ToString());
 
             Study01.Title("Object initializers:");
@@ -39,17 +39,17 @@ namespace intermediate.Study01
             // variation of fields in class.
             // This does not "replace" constructors. It's just a shortcut to set properties
             // (or public fields).
-            Kasmok[] kasmoks = new Kasmok[]
+            TestKasmok[] kasmoks = new TestKasmok[]
             {
                 // Object initializers will call parameterless constructor in this form.
-                new Kasmok {Name = "Pisko", Color = "blue", Size = "smol"},
-                new Kasmok {Name = "Pisko", Color = "blue"}, 
-                new Kasmok {Color = "blue", Size = "smol"},
-                new Kasmok {Age = 3},
+                new TestKasmok {Name = "Pisko", Color = "blue", Size = "smol"},
+                new TestKasmok {Name = "Pisko", Color = "blue"}, 
+                new TestKasmok {Color = "blue", Size = "smol"},
+                new TestKasmok {Age = 3},
                 // You can specify both constructor and object initializer.
-                new Kasmok ("Pisko", "czarny", "duzy") {Age = 2}
+                new TestKasmok ("Pisko", "czarny", "duzy") {Age = 2}
             };
-            foreach (Kasmok smo in  kasmoks) Console.WriteLine(smo.ToString());
+            foreach (TestKasmok smo in  kasmoks) Console.WriteLine(smo.ToString());
             kasmok3.Color = "ciemny";
 
             // Test for "param" keyword
