@@ -1,5 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Threading.Channels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace intermediate.Study01
 {
@@ -85,6 +87,13 @@ namespace intermediate.Study01
             kasmok.AddPebble();
             Console.WriteLine("Pebbles after that:");
             kasmok.ListPebbles();
+
+            // Test for properties w/o setter - Mosh tutorial
+            Study01.Title("Properties part 2:");
+            Console.WriteLine($"Age of kasmok: {kasmok.Age}. OlderAge: {kasmok.OlderAge}");
+            // Setting field not possible - without setter property is read only. 
+            // kasmok.OlderAge = 2;  //  Error CS0200  Property or indexer 'Kasmok.OlderAge' cannot be assigned to --it is read only
+
         }
     }
 }
