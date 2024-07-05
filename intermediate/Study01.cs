@@ -1,9 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Threading.Channels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace intermediate.Study01
+﻿namespace intermediate.Study01
 {
     internal class Study01
     {
