@@ -73,6 +73,28 @@ namespace intermediate.Study02
             // Even thougn "upcastedKasmok" and "betterKasmokList[1] are referencing the same object,
             // the _view_ of upcastedKasmok is limited to what BetterKasmok can comprehend. 
 
+            // Boxing and unboxing example.
+            Kprint.Title("Boxing and unboxing example:");
+            Console.WriteLine("Nothing to see here...");
+            // Boxing is when you make primitive or struct into an object. It must be "boxed" and
+            // put in heap so it can be later referenced like any other object. Unboxing is reverse of that. 
+            int toBeBoxed = 10;
+            object boxedInt = toBeBoxed;
+            // or "object boxedInt = 10;"
+            // Unboxing:
+            int unboxed = (int)boxedInt;
+            // Boxing and unboxing take extra computional effort, try to avoid it when possible.
+            //
+            // ArrayList() is a list which is not "type safe", you can put there different kind of objects or even primitives.
+            ArrayList arrayList = new ArrayList();
+            arrayList.Add(1);  // because ArrayList takes "objects", boxing will happen here!
+            arrayList.Add(boxedInt);
+            arrayList.Add(betterKasmokList[0]);
+            //
+            // List<t> is type safe. Whatever type you declare, will be what will be stored. Therefore no boxing or unboxing will be done
+            // (if you set it to <int>, onlt <int> will be allowed into the list, it won't take "object" as argument, but "int".
+
+
         }
     }
 }
