@@ -54,5 +54,31 @@
         {
             this.Birthdate = birthdate;
         }
+
+        /// <summary>
+        /// Example method that will be overriden by KamsmokForest by just writing a method there from a scratch.
+        /// </summary>
+        public void MakeSound_noNew()
+        {
+            Console.WriteLine("*generic kasmok sound*");
+        }
+
+        /// <summary>
+        /// Example method that will be overriden by KasmokForest using "new" keyword.
+        /// "new" keyword basically suppresses the warning, but does not change how program will behave.
+        /// It is there just to inform you that the issue exists, and by using "new" it is acknowledged and confirmed that this is what is wanted.
+        /// </summary>
+        public void MakeSound_new()
+        {
+            Console.WriteLine("*generic kasmok sound*");
+        }
+
+        /// <summary>
+        /// Example method that will be overriden by KasmokForest using "override" keyword. This class must be virtual, else compiler won't let it be.
+        /// </summary>
+        public virtual void MakeSound_override()
+        {
+            Console.WriteLine("*generic kasmok sound*");
+        }
     }
 }

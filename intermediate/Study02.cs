@@ -19,6 +19,7 @@ namespace intermediate.Study02
             {
                 Console.Write(kasmok);
                 // "is" keyword can be used to compare if given class is another class.
+                // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/type-testing-and-cast
                 if (kasmok is ForestKasmok)
                 {
                     Console.Write(". That's a forest kasmok!");
@@ -53,6 +54,9 @@ namespace intermediate.Study02
                 if (fkasmok is not null)
                 {
                     Console.Write(". That's a forest kasmok! ");
+                    // This method is unique for ForestKasmok class, this is why it must be casted to this class
+                    // and not directly called as "kasmok.HideUnderTheShroom()". To do this, BetterKasmok would need 
+                    // to have this method as well either set or not as "virtual".
                     fkasmok.HideUnderTheShroom();
                 }
                 else
@@ -94,6 +98,31 @@ namespace intermediate.Study02
             // List<t> is type safe. Whatever type you declare, will be what will be stored. Therefore no boxing or unboxing will be done
             // (if you set it to <int>, onlt <int> will be allowed into the list, it won't take "object" as argument, but "int".
 
+            // Override examples - new, noNew, override,
+            // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/knowing-when-to-use-override-and-new-keywords
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/virtual
+            Kprint.Title("Override examples - new, noNew, override. Note that all of these are BetterKasmok type with value of BetterKasmok and ForestKasmok:");
+            Console.WriteLine("'noNew' example");
+            betterKasmokList[0].MakeSound_noNew();
+            betterKasmokList[1].MakeSound_noNew();
+            Console.WriteLine("'new' example");
+            betterKasmokList[0].MakeSound_new();
+            betterKasmokList[1].MakeSound_new();
+            Console.WriteLine("'override' example");
+            betterKasmokList[0].MakeSound_override();
+            betterKasmokList[1].MakeSound_override();
+            Kprint.FTitle("Same examples, however BetterKasmok is BetterKasmok, and ForestKasmok is ForestKasmok:");
+            BetterKasmok tempBetterKasmok = betterKasmokList[0];
+            ForestKasmok tempForestKasmok = (ForestKasmok)betterKasmokList[1];
+            Console.WriteLine("'noNew' example");
+            tempBetterKasmok.MakeSound_noNew();
+            tempForestKasmok.MakeSound_noNew();
+            Console.WriteLine("'new' example");
+            tempBetterKasmok.MakeSound_new();
+            tempForestKasmok.MakeSound_new();
+            Console.WriteLine("'override' example");
+            tempBetterKasmok.MakeSound_override();
+            tempForestKasmok.MakeSound_override();
 
         }
     }
