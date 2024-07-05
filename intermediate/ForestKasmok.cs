@@ -2,16 +2,16 @@
 {
     internal class ForestKasmok : BetterKasmok
     {
-        public ForestKasmok() : base()
-        {
+        /*
+         *  Constructors
+         */
+        public ForestKasmok() : base() { }
 
-        }
+        public ForestKasmok(string name, DateTime birthdate) : base(name, birthdate) { }
 
-        public ForestKasmok(string name, DateTime birthdate) : base(name, birthdate)
-        {
-
-        }
-
+        /*
+         *  Methods
+         */
         public void HideUnderTheShroom()
         {
             Console.WriteLine($"{this.Name} quickly hid under the shroom");
