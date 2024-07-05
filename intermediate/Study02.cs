@@ -16,10 +16,14 @@ namespace intermediate.Study02
             foreach (var kasmok in betterKasmokList)
             {
                 Console.Write(kasmok);
+                // "is" keyword can be used to compare if given class is another class.
                 if (kasmok is ForestKasmok)
                 {
                     Console.Write(". That's a Forest Kasmok!");
                     // Downcasting BetterKasmok to Forestkasmok (because child class is "under" parent, I guess?)
+                    // "as" keyword will make sure if this casting is valid (instead of)
+                    // ForestKasmok fkasmok = (ForestKasmok)kasmok
+                    // If casting is not possible (eg. objects are not related), null is given, for which is the next check. 
                     ForestKasmok? fkasmok = kasmok as ForestKasmok;
                     if (fkasmok is not null)
                     {
