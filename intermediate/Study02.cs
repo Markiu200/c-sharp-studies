@@ -1,12 +1,9 @@
-﻿namespace intermediate.Study02
+﻿using NspKprint;
+
+namespace intermediate.Study02
 {
     internal class Study02
     {
-        public static void Title(string title)
-        {
-            Console.WriteLine($"\n\n  ---- {title} ----");
-        }
-
         public static void Run()
         {
             // Create example list for kasmoks downcasting and upcasting. 
@@ -15,7 +12,7 @@
             betterKasmokList.Add(new ForestKasmok("Piskocz", new DateTime(2000, 4, 28)));
 
             // Downcasting example.
-            Study02.Title("Downcasting example:");
+            Kprint.FTitle("Downcasting example:");
             foreach (var kasmok in betterKasmokList)
             {
                 Console.Write(kasmok);
