@@ -124,6 +124,12 @@ namespace intermediate.Study02
             tempBetterKasmok.MakeSound_override();
             tempForestKasmok.MakeSound_override();
 
+            // Abstract class example
+            Kprint.Title("Abstract class example:");
+            Console.WriteLine($"Habitat of BetterKasmok is {tempBetterKasmok.habitat!.DescribeHabitat()}");
+            Console.WriteLine($"Habitat of ForestKasmok is {tempForestKasmok.habitat!.DescribeHabitat()}");
+
+
         }
     }
 }
