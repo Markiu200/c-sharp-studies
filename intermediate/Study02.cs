@@ -135,7 +135,7 @@ namespace intermediate.Study02
             ToyMan toyMan = new ToyMan();
             //
             // This is where I toy around, results are bit lower
-            // habitat field is now of type "IHabitant", however Eat and Sleep implementations
+            // habitat field is now of type "Animal", and Eat and Sleep implementations
             // were moved from Animal to BetterKasmok.
             habitat.SetHabitant(toyMan);
             habitat.MakeHabitantEatAndSleep();
@@ -145,14 +145,20 @@ namespace intermediate.Study02
             habitat.MakeHabitantEatAndSleep();
 
             /*
-             * Results are (to some degree saved as commits):
-             * 
+               Results are (to some degree saved as commits):
+              
              * Having IHabitant as field type, passing all three habitants worked.
              * Having Animal as field type, ToyMan throws error, but kasmoks worked
                Make note how neither BetterKasmok nor ForestKasmok implement these methods. They are inherited
              * Having IHabitant as field type, and implementations moved from Animal to BetterKasmok,
                passing all three habitants worked.
-             *
+             * Having field type as "Animal" and implementations moved to BetterKasmok, everything broke, 
+               errors both in this file and in Habitat class. As expected.
+               This shows the "loosely coupled" vs "tightly coupled" difference. With interfaces, we can freely
+               play around with backbone stuff in any way we see fit, and as long as basic requirements are met, 
+               other classes and places in a project won't break. Here Habitat is tightly coipled with Animal, 
+               and changes to Animal broke Habitat as well. With interfaces it was completely fine.
+             
              */
         }
     }
