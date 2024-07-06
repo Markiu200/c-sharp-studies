@@ -129,7 +129,25 @@ namespace intermediate.Study02
             Console.WriteLine($"Habitat of BetterKasmok is {tempBetterKasmok.habitat!.DescribeHabitat()}");
             Console.WriteLine($"Habitat of ForestKasmok is {tempForestKasmok.habitat!.DescribeHabitat()}");
 
+            // Playing with interfaces
+            Kprint.Title("Playing with interfaces:");
+            Habitat habitat = new Habitat();
+            ToyMan toyMan = new ToyMan();
+            //
+            // This is where I toy around, results are bit lower
+            habitat.SetHabitant(toyMan);
+            habitat.MakeHabitantEatAndSleep();
+            habitat.SetHabitant(tempBetterKasmok);
+            habitat.MakeHabitantEatAndSleep();
+            habitat.SetHabitant(tempForestKasmok);
+            habitat.MakeHabitantEatAndSleep();
 
+            /*
+             * Results are (to some degree saved as commits):
+             * 
+             * Having IHabitant as field type, passing all three habitants worked.
+             * 
+             */
         }
     }
 }

@@ -14,9 +14,21 @@
         // Declaring these three classes as "implementing IHabitant interface" forces and ensures, that all of them, somehow,
         // at some point, had these two methods declared
 
-        private readonly IHabitant _habitant;
+        private IHabitant? _habitant;
+        public Habitat()
+        {
+
+        }
 
         public Habitat(IHabitant habitant)
+        {
+            this.SetHabitant(habitant);
+        }
+
+        /*
+         *  Methods
+         */
+        public void SetHabitant(IHabitant habitant)
         {
             _habitant = habitant;
         }
@@ -25,12 +37,29 @@
         {
             // Note on how IDE didn't complain about whether whatever object we pass into _habitant will have these methods or not.
             // It is quarenteed and ensured by usage of interface. 
-            _habitant.Eat();
+            if (_habitant is not null)
+                _habitant.Eat();
+            else
+                Console.WriteLine("No habitant to do the eating");
         }
 
         public void MakeHabitantSleep()
         {
-            _habitant.Sleep();
+            if (_habitant is not null)
+                _habitant.Sleep();
+            else
+                Console.WriteLine("No habitant to do the sleeping");
+        }
+
+        public void MakeHabitantEatAndSleep()
+        {
+            if (_habitant is not null)
+            {
+                _habitant.Eat();
+                _habitant.Sleep();
+            } 
+            else
+                Console.WriteLine("No habitant to do the sleeping");
         }
     }
 }
