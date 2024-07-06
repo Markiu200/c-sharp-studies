@@ -23,4 +23,12 @@
             return "Cave in snowy mountains";
         }
     }
+
+    internal class NotAKasmokHabitat : WhiteKasmokHabitat
+    {
+        public override string DescribeHabitat()
+        {
+            return "Turns out you can override overriden thing";
+        }
+    }
 }
