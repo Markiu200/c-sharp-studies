@@ -3,11 +3,22 @@
     internal class ForestKasmok : BetterKasmok
     {
         /*
+         *  Fields
+         */
+        
+
+        /*
          *  Constructors
          */
-        public ForestKasmok() : base() { }
+        public ForestKasmok() : base() 
+        {
+            this.habitat = new ForestKasmokHabitat();
+        }
 
-        public ForestKasmok(string name, DateTime birthdate) : base(name, birthdate) { }
+        public ForestKasmok(string name, DateTime birthdate) : base(name, birthdate) 
+        {
+            this.habitat = new ForestKasmokHabitat();
+        }
 
         /*
          *  Overrides
@@ -28,6 +39,11 @@
         /*
          *  Methods
          */
+        protected override void SetHabitat()
+        {
+            this.habitat = new ForestKasmokHabitat();
+        }
+
         public void HideUnderTheShroom()
         {
             Console.WriteLine($"{this.Name} quickly hid under the shroom");

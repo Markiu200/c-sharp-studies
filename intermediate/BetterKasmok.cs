@@ -2,11 +2,17 @@
 {
     internal class BetterKasmok
     {
+        /* 
+         *  Fields
+         */
+        
+
         /*
          *  Properties
          */
         // auto-implemented
         public string Name { get; set; }
+        public KasmokHabitat? habitat { get; protected set; }
 
         // manual
         DateTime _birthdate;
@@ -31,12 +37,14 @@
         {
             this.Birthdate = DateTime.Today;
             this.Name = "";
+            this.SetHabitat();
         }
 
         public BetterKasmok(string name, DateTime birthdate)
         {
             Name = name;
             Birthdate = birthdate;
+            this.SetHabitat();
         }
 
         /*
@@ -50,6 +58,11 @@
         /*
          *  Methods
          */
+        protected virtual void SetHabitat()
+        {
+            this.habitat = new WhiteKasmokHabitat();
+        }
+
         public void FixBirthdate(DateTime birthdate)
         {
             this.Birthdate = birthdate;
