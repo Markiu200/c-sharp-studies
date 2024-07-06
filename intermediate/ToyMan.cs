@@ -1,6 +1,6 @@
 ﻿namespace intermediate
 {
-    internal class ToyMan : Animal
+    internal class ToyMan : IHabitant
     {
         // Before I wrote below methods, IDE complained that:
         // Error	CS0535	'ToyMan' does not implement interface member 'IHabitant.Eat()'
