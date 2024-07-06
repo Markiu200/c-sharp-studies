@@ -14,13 +14,13 @@
         // Declaring these three classes as "implementing IHabitant interface" forces and ensures, that all of them, somehow,
         // at some point, had these two methods declared
 
-        private Animal? _habitant;
+        private IHabitant? _habitant;
         public Habitat()
         {
 
         }
 
-        public Habitat(Animal habitant)
+        public Habitat(IHabitant habitant)
         {
             this.SetHabitant(habitant);
         }
@@ -28,7 +28,7 @@
         /*
          *  Methods
          */
-        public void SetHabitant(Animal habitant)
+        public void SetHabitant(IHabitant habitant)
         {
             _habitant = habitant;
         }

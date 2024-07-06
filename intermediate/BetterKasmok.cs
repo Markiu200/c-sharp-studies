@@ -93,5 +93,9 @@
         {
             Console.WriteLine("*generic kasmok sound*");
         }
+
+        // For interfaces experiment
+        public void Eat() { Console.WriteLine("Eat"); }
+        public void Sleep() { Console.WriteLine("Sleep"); }
     }
 }

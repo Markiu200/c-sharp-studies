@@ -135,8 +135,9 @@ namespace intermediate.Study02
             ToyMan toyMan = new ToyMan();
             //
             // This is where I toy around, results are bit lower
-            // habitat field is now of type "Animal"
-            //habitat.SetHabitant(toyMan);
+            // habitat field is now of type "IHabitant", however Eat and Sleep implementations
+            // were moved from Animal to BetterKasmok.
+            habitat.SetHabitant(toyMan);
             habitat.MakeHabitantEatAndSleep();
             habitat.SetHabitant(tempBetterKasmok);
             habitat.MakeHabitantEatAndSleep();
@@ -149,6 +150,9 @@ namespace intermediate.Study02
              * Having IHabitant as field type, passing all three habitants worked.
              * Having Animal as field type, ToyMan throws error, but kasmoks worked
                Make note how neither BetterKasmok nor ForestKasmok implement these methods. They are inherited
+             * Having IHabitant as field type, and implementations moved from Animal to BetterKasmok,
+               passing all three habitants worked.
+             *
              */
         }
     }

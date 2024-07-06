@@ -5,7 +5,6 @@
     /// </summary>
     internal class Animal
     {
-        public void Eat() { Console.WriteLine("Eat"); }
-        public void Sleep() { Console.WriteLine("Sleep"); }
+
     }
 }
