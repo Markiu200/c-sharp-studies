@@ -1,6 +1,6 @@
 ﻿namespace intermediate
 {
-    internal class BetterKasmok
+    internal class BetterKasmok : Animal, IHabitant
     {
         /* 
          *  Fields

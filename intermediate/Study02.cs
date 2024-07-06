@@ -74,7 +74,7 @@ namespace intermediate.Study02
             // accepting a first argument of type 'BetterKasmok' could be found (are you missing a using directive or an assembly reference?)
             // upcastedKasmok.HideUnderTheShroom();
             //
-            // Even thougn "upcastedKasmok" and "betterKasmokList[1] are referencing the same object,
+            // Even though "upcastedKasmok" and "betterKasmokList[1] are referencing the same object,
             // the _view_ of upcastedKasmok is limited to what BetterKasmok can comprehend. 
 
             // Boxing and unboxing example.
