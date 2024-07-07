@@ -41,6 +41,8 @@ namespace intermediate.Study03
             // It is kind of like a list now - list of methods we want to use (note how we didn't call (no "()") the method).
             // Methods must have same signature as defined delegate - in this case, return void and accept one BetterKasmok argument.
             //
+            // Basically allows to pass method as an argument + can make a list of such methods.
+            //
             Console.WriteLine("\tOne call delegated:");
             Action<BetterKasmok> kasmokHandler = kasmokActions.Pet;
             kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
