@@ -46,8 +46,6 @@ namespace intermediate
 
         public void DealWithIt(BetterKasmok kasmok, Action<BetterKasmok> kasmokHandler)
         {
-            var actions = new ActionsOnKasmoks();
-
             kasmokHandler(kasmok);
         }
 
