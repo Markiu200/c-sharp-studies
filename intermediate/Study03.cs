@@ -25,49 +25,33 @@ namespace intermediate.Study03
             var genTest4 = new GenericsWithRestarints<BetterKasmok, BetterKasmok>();
             Console.WriteLine(genTest4.Compare(genTest2.someField, testKasmok1));
 
+
+
             // Playing with delegates
             // Experiments will be traced in commits.
             Kprint.Title("Playing with delegates:");
 
-            // Experiment with .NET framework built-in delegate.
+            // Experiment with .NET framework built-in delegate - Func<>.
             var kasmokDoer = new DealWithKasmok();
             var kasmokActions = new ActionsOnKasmoks();
 
-            // This looks different and weird and does not behave like anything else.
-            // Instance of delegate is created here.
-            //
-            // It is kind of like a list now - list of methods we want to use (note how we didn't call (no "()") the method).
-            // Methods must have same signature as defined delegate - in this case, return void and accept one BetterKasmok argument.
-            //
-            // Having that done, now we can use whatever action we want, and we're not limited to what framework got hardcoded
-            // Now using .NET delegate:
-            //
-            Console.WriteLine("\tOne call delegated:");
-            Action<BetterKasmok> kasmokHandler = kasmokActions.Pet;
-            kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
-            //
-            // Like kasmokHandler before, Action derives from System.MulticastDelegate, which allows it to have multiple calls assigned. it's a class.
-            // MulticastDelegate is derived from System.Delegate,
-            // which consists of properties "Method" (points to method) and "Target" (points to class that has this method).
-            // 
-            // We can add more calls to that list by simply adding them:
-            //
-            kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
-            Console.WriteLine("\tAdded one call to be delegated:");
-            kasmokHandler += kasmokActions.Feed;
-            kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
-            //
-            // We can also create our own methods and pass them to delegate, as long as their signature meet the requirement:
-            //
-            Console.WriteLine("\tAdded own defined call to be delegated:");
-            kasmokHandler += Groom;
-            kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
-        }
+            Func<BetterKasmok, int> kasmokHandler = kasmokActions.TakeItsRaspberries;
+            kasmokHandler += kasmokActions.TakeMoreRaspberries;
 
-        // Declare our own action on kasmoks
-        static void Groom (BetterKasmok kasmok)
-        {
-            Console.WriteLine($"{kasmok.Name} kasmok groomed");
+            // it looks somewhat strange, but it seems that Delegate will run both methods one after another
+            // replacing first return of 12 with second return of 22, and finally only 22 is being returned and summed up.
+            // https://dev.to/moe23/c-9-delegate-action-and-func-13d7
+            // "if we call multiple methods inside the func it will only return the last value, it will execute all of the methods but
+            // the return will be from only the last method called."
+
+            int sum = kasmokDoer.DealWithRaspberries(testKasmok1, kasmokHandler);
+            Console.WriteLine($"Collected: {sum}");
+
+            // Final word - when to use delegate, and when to use interface (by Mosh, by MSDN:
+            // Use delegate when:
+            // * personal preference,
+            // * An eventing design pattern is used,
+            // * The caller doesn't need to access other properties or methods on the object implementing the method.
         }
     }
 }
