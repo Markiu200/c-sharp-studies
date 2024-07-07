@@ -39,6 +39,11 @@ namespace intermediate
         // Action is used for calls to methods that do not return anything.
         // Func are used for methods that do return things, so you can fetch that with "out" declared parameter.
 
+        // Or create it by hand, here Action<> type (because takes arg and returns void):
+        public delegate void KasmokActionHandler(BetterKasmok kasmok);
+        //
+        // Later instead of "Action<BetterKasmok>" use "KasmokActionHandler<BetterKasmok>".
+
         public void DealWithIt(BetterKasmok kasmok, Action<BetterKasmok> kasmokHandler)
         {
             var actions = new ActionsOnKasmoks();
