@@ -29,7 +29,7 @@ namespace intermediate.Study03
             // Experiments will be traced in commits.
             Kprint.Title("Playing with delegates:");
 
-            // Experiment with own declared delegate.
+            // Experiment with .NET framework built-in delegate.
             var kasmokDoer = new DealWithKasmok();
             var kasmokActions = new ActionsOnKasmoks();
 
@@ -40,12 +40,13 @@ namespace intermediate.Study03
             // Methods must have same signature as defined delegate - in this case, return void and accept one BetterKasmok argument.
             //
             // Having that done, now we can use whatever action we want, and we're not limited to what framework got hardcoded
+            // Now using .NET delegate:
             //
             Console.WriteLine("\tOne call delegated:");
-            DealWithKasmok.KasmokDoerHandler kasmokHandler = kasmokActions.Pet;
+            Action<BetterKasmok> kasmokHandler = kasmokActions.Pet;
             kasmokDoer.DealWithIt(testKasmok1, kasmokHandler);
             //
-            // kasmokHandler now derives from System.MulticastDelegate, which allows it to have multiple calls assigned. it's a class.
+            // Like kasmokHandler before, Action derives from System.MulticastDelegate, which allows it to have multiple calls assigned. it's a class.
             // MulticastDelegate is derived from System.Delegate,
             // which consists of properties "Method" (points to method) and "Target" (points to class that has this method).
             // 

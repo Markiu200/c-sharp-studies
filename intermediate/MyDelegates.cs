@@ -21,11 +21,16 @@ namespace intermediate
         // Method takes a kasmok and does things with it. Assume that we're using that framework and cannot 
         // freely modify it.
 
-        // Define the signature of the method, that this delegate will be responsible of calling.
-        public delegate void KasmokDoerHandler(BetterKasmok kasmok);
-
-        // Add this delegate as a parameter:
-        public void DealWithIt(BetterKasmok kasmok, KasmokDoerHandler kasmokHandler)
+        // Instead of declaring own delegates, we can use .NET ones. They come in variants:
+        // Action       - probably used for methods that do not have arguments
+        // Action<>     - methods with arguments
+        // Func         - no arguments, returns things
+        // Func<>       - argumets, returns things
+        // Action is used for calls to methods that do not return anything.
+        // Func are used for methods that do return things, so you can fetch that with "out" declared parameter.
+        //
+        // Add this delegate as a parameter. Our calls don't return anything but take argument, so Action<typeOfThatArgument>:
+        public void DealWithIt(BetterKasmok kasmok, Action<BetterKasmok> kasmokHandler)
         {
             var actions = new ActionsOnKasmoks();
 
