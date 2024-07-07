@@ -82,12 +82,58 @@ namespace intermediate.Study03
             // * personal preference,
             // * An eventing design pattern is used,
             // * The caller doesn't need to access other properties or methods on the object implementing the method.
+
+
+            // Lambda expressions.
+            Kprint.Title("Lambda expressions:");
+            // Is an anonymous method.
+            // For simplicity.
+            // Say you want a method to check if kasmok's name is "Kasmok". 
+            // You'd need to write an entire method and then pass BetterKasmok to it.
+            var testKasmok2 = new BetterKasmok("Kasmok", new DateTime(1900, 9, 23));
+            var checkKasmoks = new List<BetterKasmok> { testKasmok1, testKasmok2};
+            foreach (var kasmok in checkKasmoks)
+                Console.WriteLine($"Is {kasmok.Name} 'Kasmok'? {IsNamedKasmok(kasmok)}");
+
+            // Which is ok, but why make a function when you can have it in one line?
+            // arg => expression
+            // () => expression
+            // (arg1, arg2) => expression
+            //
+            // But first it needs to be put into a delegate:
+            Func<BetterKasmok, bool> isKasmokKasmok = kasmok => kasmok.Name == "Kasmok";
+            //
+            // Now we can use it inline:
+            //
+            Console.WriteLine("\tNow with Lambda:");
+            foreach (var kasmok in checkKasmoks)
+                Console.WriteLine($"Is {kasmok.Name} 'Kasmok'? {isKasmokKasmok(kasmok)}");
+
+            // Predicate is Delegate that returns bool. You'll find those in search functions, like List<>.FindAll() or List<>.Find().
+            // There you can directly pass existing method or directly Lambda expression without boxing it into delegate.
+            Console.WriteLine("\tFinding Kasmok - FindAll(method):");
+            Console.WriteLine(checkKasmoks.Find(IsNamedKasmok));
+            //
+            Console.WriteLine("\tFinding Kasmok - Lambda:");
+            Console.WriteLine(checkKasmoks.Find(kasmok => kasmok.Name == "Kasmok"));
+
+            // Lambda expression has scope of the block in which it is declared, and can use these fields without passing them as argument.
+            Console.WriteLine("\tUsing Lambda - scope:");
+            const int lambdaConst = 5;
+            Func<int, int> times5 = val => val * lambdaConst;
+            Console.WriteLine(times5(2));
         }
 
         // Declare our own action on kasmoks
         static void Groom(BetterKasmok kasmok)
         {
             Console.WriteLine($"{kasmok.Name} kasmok groomed");
+        }
+
+        // Declare method for lambda expression example
+        static bool IsNamedKasmok(BetterKasmok kasmok)
+        {
+            return kasmok.Name == "Kasmok";
         }
     }
 }
