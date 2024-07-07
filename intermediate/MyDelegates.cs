@@ -42,7 +42,7 @@ namespace intermediate
         // Or create it by hand, here Action<> type (because takes arg and returns void):
         public delegate void KasmokActionHandler(BetterKasmok kasmok);
         //
-        // Later instead of "Action<BetterKasmok>" use "KasmokActionHandler<BetterKasmok>".
+        // Later instead of "Action<BetterKasmok>" use "KasmokActionHandler".
 
         public void DealWithIt(BetterKasmok kasmok, Action<BetterKasmok> kasmokHandler)
         {
