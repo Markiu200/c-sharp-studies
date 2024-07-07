@@ -54,7 +54,7 @@
         where TAnotherType : IComparable
         // can be in one line, but this way is more readable
     {
-        public bool Compare(TOneType first, TAnotherType second)
+        public int Compare(TOneType first, TAnotherType second)
         {
             // Even with struct this won't work, so stick to the methods
             // Error	CS0019	Operator '==' cannot be applied to operands of type 'TStruct' and 'TStruct'
@@ -62,7 +62,7 @@
             // "The == and != operators can't operate on a struct unless the struct explicitly overloads them."
             // return first == second;
             // would work if these were constrained to "class" (they have "==" as "Equals")
-            return first.Equals(second);
+            return first.CompareTo(second);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace intermediate
 {
-    internal class BetterKasmok : Animal, IHabitant
+    internal class BetterKasmok : Animal, IHabitant, IComparable
     {
         /* 
          *  Fields
@@ -92,6 +92,15 @@
         public virtual void MakeSound_override()
         {
             Console.WriteLine("*generic kasmok sound*");
+        }
+
+        public int CompareTo(object? otherKasmok)
+        {
+            BetterKasmok? kasmok = otherKasmok as BetterKasmok;
+            if (kasmok is null)
+                return 1;
+
+            return DateTime.Compare(this.Birthdate, kasmok.Birthdate);
         }
     }
 }
