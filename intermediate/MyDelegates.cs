@@ -1,4 +1,6 @@
-﻿namespace intermediate
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace intermediate
 {
     internal class ActionsOnKasmoks
     {
@@ -19,7 +21,11 @@
         // Method takes a kasmok and does things with it. Assume that we're using that framework and cannot 
         // freely modify it.
 
-        public void DealWithIt(BetterKasmok kasmok)
+        // Define the signature of the method, that this delegate will be responsible of calling.
+        public delegate void KasmokDoerHandler(BetterKasmok kasmok);
+
+        // Add this delegate as a parameter:
+        public void DealWithIt(BetterKasmok kasmok, KasmokDoerHandler kasmokHandler)
         {
             var actions = new ActionsOnKasmoks();
 
@@ -27,8 +33,13 @@
             // user of this framework, we don't have much choice. And we'd like to have some.
             //
             // It can be achieved with interfaces or delegates.
-            actions.Pet(kasmok);
-            actions.Feed(kasmok);
+
+            // Get rid of hardcoded calls..
+            // actions.Pet(kasmok);
+            // actions.Feed(kasmok);
+            //
+            // ..and get Delegate to work.
+            kasmokHandler(kasmok);
         }
     }
 }
