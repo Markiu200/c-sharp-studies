@@ -24,6 +24,14 @@ namespace intermediate.Study03
             Kprint.Title("Testing multiple type generics:");
             var genTest4 = new GenericsWithRestarints<BetterKasmok, BetterKasmok>();
             Console.WriteLine(genTest4.Compare(genTest2.someField, testKasmok1));
+
+            // Playing with delegates
+            // Experiments will be traced in commits.
+            Kprint.Title("Playing with delegates:");
+
+            var kasmokDoer = new DealWithKasmok();
+            kasmokDoer.DealWithIt(testKasmok1);
+
         }
     }
 }
