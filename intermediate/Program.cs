@@ -10,11 +10,17 @@ namespace intermediate
     {
         static void Main(string[] args)
         {
-            // intermediate.Study01.Study01.Run();
-            // intermediate.Study02.Study02.Run();
-            // intermediate.Study03.Study03.Run();
-            // intermediate.Study04.Study04.Run();
-            intermediate.Study05.Study05.Run();
+            try
+            {
+                // intermediate.Study01.Study01.Run();
+                // intermediate.Study02.Study02.Run();
+                // intermediate.Study03.Study03.Run();
+                // intermediate.Study04.Study04.Run();
+                intermediate.Study05.Study05.Run();
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
