@@ -136,6 +136,45 @@ namespace intermediate.Study04
             // .Max(), .Min()       - as expected. Predicate allows to select by which field "max" or "min" should be calculated,
             // .Sum()               - sums elements (by field pointed in predicate),
             // .Mean(), .Average()  - as expected (by field pointed in predicate).
+
+
+
+            /*
+             * **** Nullable types ****
+             */
+
+            // Allows value types to have "null". Might be useful when working with databases, and in many more scenarios.
+            // Error	CS0037	Cannot convert null to 'bool' because it is a non-nullable value type
+            // bool isBool = null;
+
+            // Nullable is built-in class Nullable:
+            Nullable<bool> isBool = null;
+
+            // This makes such variable to have three additional method and properties:
+            // GetValueOrDefault() ; HasValue ; Value
+            Kprint.Title("Nullable types:");
+            Console.WriteLine("isBool.GetValueOrDefault(): " + isBool.GetValueOrDefault());
+            Console.WriteLine("isBool.HasValue: " + isBool.HasValue);
+            try
+            {
+                Console.WriteLine("isBool.Value: " + isBool.Value);
+            }
+            catch (InvalidOperationException) { Console.WriteLine("isBool.Value caused error because there's no value (null)"); }
+
+            // Shorthand to Nullable<type> is just using "?"
+            bool? isBool2 = null;
+            //
+            // For types that can be null anyway (like "object"), "?" will just suppress compiler warning - 
+            // it declares that you as programmer are aware of possibility of that being null and you will take care of it somehow.
+
+            // "Null Coalescing Operator" - "??" is shorthand for ternary operator (cond ? true : false) for checking for null:
+            // isNull ?? newValue
+            // So if given value is not null then take that value, otherwise take "newValue".
+            DateTime? time1 = null;
+            DateTime time2 = time1 ?? DateTime.Today;
+            //
+            Console.WriteLine("\tNull Coalescing Operator:");
+            Console.WriteLine(time2);
         }
     }
 }
