@@ -51,12 +51,40 @@ namespace intermediate.Study06
             */
 
             // Synchronous model - return string:
+            /*
             Console.WriteLine("\tSynchronous with return:");
             begin = DateTime.Now;
             Console.WriteLine("Processing started...");
             gotHtml = htmlStuff.GetHTML("https://learn.microsoft.com/en-ca/", begin).Substring(0,30);
             Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
             Console.WriteLine("Saved string: " + gotHtml);
+            */
+
+            // Asynchronous model - return string:
+            Console.WriteLine("\tAsynchronous with return:");
+            begin = DateTime.Now;
+            Console.WriteLine("Processing started...");
+            async void AsyncString()
+            {
+                // Without "await" .Substring couldn't be used, sinde "Task<>" doesn't have such method. 
+                // Applying "await" makes it a string again. Not inline though, this is why .Substring is used in a new line.
+                //
+                // Also to use await containing block must be async, therefore this piece of code is boxed within local function.
+                //
+                // await is needed here to get the returned value.
+                gotHtml = await htmlStuff.GetHTMLAsync("https://learn.microsoft.com/en-ca/", begin);
+            }
+            AsyncString();
+            if (gotHtml.Length > 30)
+                gotHtml = gotHtml.Substring(0, 30);
+            Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
+            Console.WriteLine("Saved string: " + gotHtml);
+            // To see actually what is saved, here I'll just wait three more seconds and read gatHtml again.
+            Thread.Sleep(5000);
+            if (gotHtml.Length > 30)
+                gotHtml = gotHtml.Substring(0, 30);
+            Console.WriteLine("Saved string after 5 seconds: " + gotHtml);
+            Console.Read();
         }
     }
 
@@ -116,9 +144,22 @@ namespace intermediate.Study06
             Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
 
             Thread.Sleep(3000);
-            Console.WriteLine("Sync sleep done... ".PadRight(30, ' ') + (DateTime.Now - start));
+            Console.WriteLine("Sync sleep done, got value... ".PadRight(30, ' ') + (DateTime.Now - start));
 
             return webClient.DownloadString(url);
+        }
+
+        // Asynchronous processing - returns string:
+        // Whatever needs to be returned, set generic Task<type> to that type.
+        public async Task<string> GetHTMLAsync(string url, DateTime start)
+        {
+            var webClient = new WebClient();
+            Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
+
+            await Task.Delay(3000);
+            Console.WriteLine("Sync sleep done, got value... ".PadRight(30, ' ') + (DateTime.Now - start));
+
+            return await webClient.DownloadStringTaskAsync(url);
         }
     }
 }
