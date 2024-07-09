@@ -26,10 +26,25 @@ namespace intermediate.Study06
             var htmlStuff = new HTMLStuff();
             DateTime begin = DateTime.Now;
 
+            // Synchronous model:
+            /*
             Console.WriteLine("\tSynchronous:");
             Console.WriteLine("Processing started...");
             htmlStuff.DownloadHTML("https://learn.microsoft.com/en-ca/", begin);
             Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
+            */
+
+            // Asynchronous model:
+            Console.WriteLine("\n\tAsynchronous:");
+            Console.WriteLine("Processing started...");
+            // Compiler suggests to use await here as well. To use it, Run() would have to be async.
+            // All of that would cause to runtime reach the end of program, and thus cancelling all awaited processes.
+            // Without await / async at this level here, Program will have to wait until intermediate.Study06.Study06.Run() actually ends. 
+            // Console.Read() here at the end stops this method from finishing prematurely, otherwise it would end too quick as well, since 
+            // control would reach end of function, go back to Main(), and from there to the end.
+            htmlStuff.DownloadHTMLAsync("https://learn.microsoft.com/en-ca/", begin);
+            Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
+            Console.Read();
         }
     }
 
@@ -39,7 +54,7 @@ namespace intermediate.Study06
         public void DownloadHTML(string url, DateTime start)
         {
             var webClient = new WebClient();
-            var html = webClient.DownloadString(url);
+            var html = webClient.DownloadStringTaskAsync(url);
             Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
 
             using (var streamWriter = new StreamWriter(@"example_result.html"))
@@ -59,16 +74,26 @@ namespace intermediate.Study06
         public async Task DownloadHTMLAsync(string url, DateTime start)
         {
             var webClient = new WebClient();
-            var html = webClient.DownloadString(url);
+            // .DownloadStringAsync is old legacy method, that has nothing to do with async await.
+            // Usage of methods that are designed to work with async / await is required, with them usage of these keywords is allowed.
+            //
+            // await gives compiler info that this task will take time to do. When it gets here, control will immediately return to the place where 
+            // method was invoked and will run the rest of the code. It will remeber this place however, and when it receives info that the task
+            // is completed, it will return here to continue with the method execution.
+            //
+            // It partitiones this block of code to as many as there are await keywords, and makes it work with callback functions. It's under the hood.
+            //
+            var html = await webClient.DownloadStringTaskAsync(url);
             Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
 
             using (var streamWriter = new StreamWriter(@"example_result.html"))
             {
-                streamWriter.Write(html);
+                // streamWriter.Write is also blocking operation, so it comes with Async version and can be awaited.
+                await streamWriter.WriteAsync(html);
             }
             Console.WriteLine("Write done... ".PadRight(30, ' ') + (DateTime.Now - start));
 
-            Thread.Sleep(3000);
+            await Task.Delay(3000);
             Console.WriteLine("Async sleep done... ".PadRight(30, ' ') + (DateTime.Now - start));
         }
 
