@@ -75,6 +75,67 @@ namespace intermediate.Study04
             //
             // You'll find that you'll be using already existing extensions methods, rather than defining own ones.
 
+
+
+            /*
+             * **** LINQ ****
+             */
+
+            // Stands for Language Integrated Query, and allows to query objects (in code). Following can be queried:
+            // * objects in memory, eg. collections (LINQ to Objects)
+            // * databases (LINQ to Entities)
+            // * XML (LINQ to XML)
+            // * ADO.NET Data Sets (LINQ to Data Sets)
+            forestSmoList.Add(new ForestKasmok("Grzib", new DateTime(1999, 7, 7)));
+            forestSmoList.Add(new ForestKasmok("Pomponik", new DateTime(2001, 5, 18)));
+            forestSmoList.Add(new ForestKasmok("Sznureczek", new DateTime(1996, 12, 8)));
+
+            // Since LINQ is mostly (if not only) extension methods, it is used by invoking methods.
+            Kprint.Title("LINQ:");
+            // Where() takes predicate, so Lambda Expression will suffice. Where is more connected to LINQ,
+            // whereas for Lambda Expressions "FindAll" would be used (for Lists).
+            Console.WriteLine("\tWhere():");
+            var kasmoksOf1999 = forestSmoList.Where(kasmok => kasmok.Birthdate.Year == 1999);
+            foreach (var kasmok in kasmoksOf1999)
+                Console.WriteLine(kasmok);
+
+            // LINQ is about methods, predicates are made with eg. Lambda Expressions (or just methods).
+            //
+            // Power of LINQ shows in ability to link these methods together.
+            // Convention is to have each method in it's own line (to improve readibility).
+            var kasmoksOlderThan23ByName = forestSmoList
+                .Where(kasmok => kasmok.Age > 23)
+                .OrderBy(kasmok => kasmok.Name)
+                .Select(kasmok => kasmok.Name);  // Select allows to pick particular field of an object
+
+            Console.WriteLine("\tOlder than 23 and sorted by name (LINQ Query Expressions):");
+            foreach (var kasmok in kasmoksOlderThan23ByName)
+                Console.WriteLine(kasmok);
+
+            // That kind of linking is called "LINQ Query Extensions".
+            // Alternative to that is "LINQ Query Operators", and looks somewhat like SQL query (but with different order of operations):
+            var kasmoksAfter23ByName =
+                from kasmok in forestSmoList
+                where kasmok.Age > 23
+                orderby kasmok.Name
+                select kasmok.Name;
+            //
+            Console.WriteLine("\tOlder than 23 and sorted by name (LINQ Query Operators):");
+            foreach (var kasmok in kasmoksAfter23ByName)
+                Console.WriteLine(kasmok);
+            // It must start with "from" and end with "select" though. Moreover, not all methods are covered with LINQ keywords,
+            // so it's more flexible and robust to use "LINQ Query Expressions". Keywords internally traslate to methods anyway. 
+
+            // There's a lot of LINQ methods to be found on Google. Mentioned on Mosh course were:
+            // .Single()            - returns a single object from collection. Will throw error if nothing was found, or more than one is found,
+            // .SingleOrDefault()   - like above, but instead error will return default value (null for objects),
+            // .First(), .FirstOrDefault(), Last(), LastOrDefault()     - self explanatory,
+            // .Skip(<int>)         - for paging data, skips <int> first elements,
+            // .Take(<int>)         - for paging data, returns <int> elements from here (eg. after .Skip()),
+            // .Count()             - exactly as expected,
+            // .Max(), .Min()       - as expected. Predicate allows to select by which field "max" or "min" should be calculated,
+            // .Sum()               - sums elements (by field pointed in predicate),
+            // .Mean(), .Average()  - as expected (by field pointed in predicate).
         }
     }
 }
