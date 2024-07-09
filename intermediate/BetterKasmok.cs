@@ -30,6 +30,23 @@
             get { return (DateTime.Today - Birthdate).Days / 365; }
         }
 
+        // Events - here Habitat is publisher - naming convention is to put what's happening + EventHandler.
+        // 1 - Define a delegate
+        public delegate void LightsOutEventHandler1(object? sender, EventArgs e);
+        //
+        // 2 - Define an event based on that delegate
+        // "event" keyword makes it a specific property instead of just publicly available field. Does the encapsulation.
+        // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event
+        // https://stackoverflow.com/questions/3028724/why-do-we-need-the-event-keyword-while-defining-events
+        // https://csharpindepth.com/Articles/Events
+        //
+        public event LightsOutEventHandler1? LightsOut;
+
+        // Shorter way:
+        public event Action<object?, EventArgs>? LightsOut2;
+        // Shortest way - delegate for events introduced by .NET
+
+
         /* 
          *  Constructors
          */
@@ -45,6 +62,24 @@
             Name = name;
             Birthdate = birthdate;
             this.SetHabitat();
+        }
+        /*
+         *  Events
+         */
+        // Convention is to always set it to protected virtual void, and name it "On<whatshappening>"
+        // This calls all the subscribers and runs their methods.
+        protected virtual void OnLightsOut(object? sender, EventArgs e)
+        {
+            if (LightsOut != null)
+                // EventArgs.Empty if you don't actually want to pass any additional data, just this object.
+                // https://learn.microsoft.com/en-us/dotnet/api/system.eventargs?view=net-8.0
+                // https://stackoverflow.com/questions/14977927/how-do-i-pass-objects-in-eventargs
+                // If you don't use EventHandler<>, you can define that object whatever you want, but probably doesn't work well with being universal
+                // In fact, EventArgs is not designed to carry any data. To do som you have to use own class, or class that derives from EventArgs - 
+                // either own, or other available in .NET.
+                // https://learn.microsoft.com/en-us/dotnet/standard/events/
+                // https://stackoverflow.com/questions/790344/why-is-it-useful-to-inherit-from-eventargs
+                LightsOut(this, EventArgs.Empty);
         }
 
         /*
@@ -101,6 +136,13 @@
                 return 1;
 
             return DateTime.Compare(this.Birthdate, kasmok.Birthdate);
+        }
+
+        // Method that will emit event
+        public void TurnTheLightsOff()
+        {
+            Console.WriteLine($"Kasmok {Name} turned the lights out!");
+            OnLightsOut(this, null!);
         }
     }
 }
