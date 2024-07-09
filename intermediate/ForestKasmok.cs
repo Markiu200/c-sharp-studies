@@ -19,6 +19,14 @@
         {
             this.habitat = new ForestKasmokHabitat();
         }
+        /*
+         *  Events
+         */
+        // This is where we code what we need to happen on event.
+        public void OnLightsOutEventHandler(object? sender, EventArgs e)
+        {
+            MakeSound_override();
+        }
 
         /*
          *  Overrides
