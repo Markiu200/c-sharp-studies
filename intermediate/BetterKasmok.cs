@@ -45,7 +45,9 @@
         // Shorter way:
         public event Action<object?, EventArgs>? LightsOut2;
         // Shortest way - delegate for events introduced by .NET
-
+        public event EventHandler<EventArgs>? LightsOut3;
+        // "sender" is implicintly sent. If you don't need to send any EventArgs, you can go with EventHandler (without <>)
+        public event EventHandler? LightsOut4NoArgs;
 
         /* 
          *  Constructors
@@ -68,7 +70,7 @@
          */
         // Convention is to always set it to protected virtual void, and name it "On<whatshappening>"
         // This calls all the subscribers and runs their methods.
-        protected virtual void OnLightsOut(object? sender, EventArgs e)
+        protected virtual void OnLightsOut()
         {
             if (LightsOut != null)
                 // EventArgs.Empty if you don't actually want to pass any additional data, just this object.
@@ -142,7 +144,7 @@
         public void TurnTheLightsOff()
         {
             Console.WriteLine($"Kasmok {Name} turned the lights out!");
-            OnLightsOut(this, null!);
+            OnLightsOut();
         }
     }
 }

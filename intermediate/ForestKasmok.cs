@@ -25,7 +25,10 @@
         // This is where we code what we need to happen on event.
         public void OnLightsOutEventHandler(object? sender, EventArgs e)
         {
-            MakeSound_override();
+            BetterKasmok? whiteSmo = sender as BetterKasmok;
+            if (whiteSmo is not null)
+                Console.Write($"{whiteSmo.Name} turned the lights out! "); 
+                MakeSound_override();
         }
 
         /*

@@ -28,7 +28,7 @@ namespace intermediate.Study04
             // 1 - Define a delegate
             // 2 - Define an event based on that delegate
             // 3 - Raise the event
-            var whiteSmo = new BetterKasmok("Kasmok", new DateTime(1992, 12, 21));  // Publisher
+            var whiteSmo = new BetterKasmok("Czompek", new DateTime(1992, 12, 21));  // Publisher
             var forestSmoList = new List<ForestKasmok>()  // List of Subcribers
             {
                 new ForestKasmok("Melon", new DateTime(1999, 4, 1)),
