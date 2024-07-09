@@ -5,7 +5,6 @@ using intermediate.Study04;
 using intermediate.Study05;
 using intermediate.Study06;
 
-
 namespace intermediate
 {
     internal class Program
