@@ -24,6 +24,8 @@ namespace intermediate
                 return post;
 
             // Fun note - Take() is an extension method to String[], made by Microsoft later into language development
+            // Entire LINQ is in extensions methods, as they were introduced later in C# existence.
+            // MS could probably bake it into base classes, but chose to do it that way for some reason.
             return string.Join(" ", words.Take(numberOfWords)) + "...";
         }
     }
