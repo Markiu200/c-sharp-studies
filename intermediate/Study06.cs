@@ -25,6 +25,7 @@ namespace intermediate.Study06
 
             var htmlStuff = new HTMLStuff();
             DateTime begin = DateTime.Now;
+            string gotHtml = "";
 
             // Synchronous model:
             /*
@@ -35,7 +36,9 @@ namespace intermediate.Study06
             */
 
             // Asynchronous model:
+            /*
             Console.WriteLine("\n\tAsynchronous:");
+            begin = DateTime.Now;
             Console.WriteLine("Processing started...");
             // Compiler suggests to use await here as well. To use it, Run() would have to be async.
             // All of that would cause to runtime reach the end of program, and thus cancelling all awaited processes.
@@ -45,6 +48,15 @@ namespace intermediate.Study06
             htmlStuff.DownloadHTMLAsync("https://learn.microsoft.com/en-ca/", begin);
             Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
             Console.Read();
+            */
+
+            // Synchronous model - return string:
+            Console.WriteLine("\tSynchronous with return:");
+            begin = DateTime.Now;
+            Console.WriteLine("Processing started...");
+            gotHtml = htmlStuff.GetHTML("https://learn.microsoft.com/en-ca/", begin).Substring(0,30);
+            Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
+            Console.WriteLine("Saved string: " + gotHtml);
         }
     }
 
@@ -97,5 +109,16 @@ namespace intermediate.Study06
             Console.WriteLine("Async sleep done... ".PadRight(30, ' ') + (DateTime.Now - start));
         }
 
+        // Synchronous processing - returns string:
+        public string GetHTML(string url, DateTime start)
+        {
+            var webClient = new WebClient();
+            Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
+
+            Thread.Sleep(3000);
+            Console.WriteLine("Sync sleep done... ".PadRight(30, ' ') + (DateTime.Now - start));
+
+            return webClient.DownloadString(url);
+        }
     }
 }
