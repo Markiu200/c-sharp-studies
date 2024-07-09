@@ -1,4 +1,5 @@
-﻿using NspKprint;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using NspKprint;
 
 namespace intermediate.Study04
 {
@@ -175,6 +176,63 @@ namespace intermediate.Study04
             //
             Console.WriteLine("\tNull Coalescing Operator:");
             Console.WriteLine(time2);
+
+
+
+            /*
+             * **** Dynamics ****
+             */
+
+            Kprint.Title("Dynamics:");
+            // Made for interoperabilty with COM (eg, writing office applications) and Dynamic languages (IronPython).
+            // It boils down to "dynamic" keyword used instead of type.
+            dynamic i = 5;
+            //
+            // Now the type of "i" is determined at runtime (like in Python, dynamically-typed) instead of at compile time.
+            // Right now it's "int".
+            // Resolution of types, properties, members, methods happens at runtime.
+            // Type will adjust to whatever is assigned to a variable without any problem (like in Python):
+            i = "Now it's a string";
+
+            // Now "i" is of String type. 
+            // This is determined by DLR (Dynamic Language Runtime) (and not CLR - Common Language Runtime).
+            // Because dynamics are checked at runtime and not at compile time, we can do:
+            try
+            {
+                i++;
+            }
+            catch (RuntimeBinderException) { Console.WriteLine("Increment on String not allowed, RuntimeBinderException"); }
+            //
+            // and it will not throw error on compile. It will crash at runtime. 
+            // For this reason it is less secure to use dynamics and more unit testing is needed.
+
+            // Dynamics allow you to avoid "reflection".
+            // Let say you ended up with an object, that at compile time we don't know it's methods. With reflection something like this is required:
+            //
+            // var obj = "Test";//
+            // var methodInfo = obj.GetType().GetMethod("GetHashCode");
+            // methodInfo.Invoke(null, null);
+            //
+            // Which is like a magic. At compile time we know that object has "GetHashCode()" method,
+            // but assume we didn't. It must be tested for, reflected.
+            // Instead "dynamic" can be used and object's method simply called. At runtime we will find out if method exists or not:
+            Console.WriteLine("GetHashCode of dynamic: " + i.GetHashCode());
+            try
+            {
+                Console.WriteLine("GetSomething of dynamic: " + i.GetSomething());
+            }
+            // Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'string' does not contain a definition for 'GetSomething'
+            // at CallSite.Target(Closure, CallSite, Object)
+            // at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0, TRet](CallSite site, T0 arg0)
+            // at intermediate.Study04.Study04.Run() in C: \Users\ksmforest\source\repos\CS_with_Mosh\intermediate\Study04.cs:line 213
+            catch (Exception e) { Console.WriteLine("RuntimeBinderException because String doesn't have \"GetSomething\" method," +
+                " but we only just found out at compile time."); }
+
+            var j = i;
+            // "j" is now also "dynamic". It can be casted to a proper, compile time tested variable, like String. It will be implicitly casted.
+            // (or if needed, explicitly)
+            string text = j;
+            Console.WriteLine(text);
         }
     }
 }
