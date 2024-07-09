@@ -36,7 +36,7 @@ namespace intermediate.Study06
             */
 
             // Asynchronous model:
-            /*
+            
             Console.WriteLine("\n\tAsynchronous:");
             begin = DateTime.Now;
             Console.WriteLine("Processing started...");
@@ -48,7 +48,7 @@ namespace intermediate.Study06
             htmlStuff.DownloadHTMLAsync("https://learn.microsoft.com/en-ca/", begin);
             Console.WriteLine("Processing is done. ".PadRight(30, ' ') + (DateTime.Now - begin));
             Console.Read();
-            */
+            
 
             // Synchronous model - return string:
             /*
@@ -61,6 +61,7 @@ namespace intermediate.Study06
             */
 
             // Asynchronous model - return string:
+            /*
             Console.WriteLine("\tAsynchronous with return:");
             begin = DateTime.Now;
             Console.WriteLine("Processing started...");
@@ -85,6 +86,7 @@ namespace intermediate.Study06
                 gotHtml = gotHtml.Substring(0, 30);
             Console.WriteLine("Saved string after 5 seconds: " + gotHtml);
             Console.Read();
+            */
         }
     }
 
@@ -123,7 +125,17 @@ namespace intermediate.Study06
             //
             // It partitiones this block of code to as many as there are await keywords, and makes it work with callback functions. It's under the hood.
             //
-            var html = await webClient.DownloadStringTaskAsync(url);
+
+            // If code cannot proceed without this method finished, this would be perfect.
+            // var html = await webClient.DownloadStringTaskAsync(url);
+            //
+            // However if there's still a piece of code that can be executed, Async task can be saved.
+            // Control will continue with code from that point until first "await" is encountered.
+            //
+            var htmlTask = webClient.DownloadStringTaskAsync(url);
+            Console.WriteLine("Code can be still executed without exiting async block...");
+
+            var html = await htmlTask;
             Console.WriteLine("HTML downladed... ".PadRight(30, ' ') + (DateTime.Now - start));
 
             using (var streamWriter = new StreamWriter(@"example_result.html"))
