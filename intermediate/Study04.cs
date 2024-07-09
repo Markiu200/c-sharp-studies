@@ -45,6 +45,36 @@ namespace intermediate.Study04
 
             // Emit the event.
             whiteSmo.TurnTheLightsOff();
+
+
+
+            /*
+             * **** Extension Methods ****
+             */
+
+            // Allows to add methods to existing class without
+            // * changing it's source code, or
+            // * creating a new class that inherits from it.
+            //
+            // For example, we'd like to String class to do something new. 
+            // It's sealed class so we cannot inherit from it, and it's build-in default C# type, 
+            // so we probably shouldn't mess around with it directly.
+            string post = "This is supposed to be a very long blog post!";
+
+            // We want to generate summary of that post - string that contains up to set amount of words of post.
+            // Brand new method could be created that exists for itself, but here we want String itself to do it.
+            // post.Shorten(5);
+            // So after actuallu implementing that extension method in Extensions.cs:
+            Kprint.Title("Extension methods:");
+            Console.WriteLine(post);
+            Console.WriteLine(post.Shorten(5));
+
+            // It is recommended by MSDN to avoid creating extension methods if possible, and do it only when necessary.
+            // Reason of that is, if the method we "extended" is actually introduced in C# later, it will override our extension.
+            // Instance methods have priority over static methods.
+            //
+            // You'll find that you'll be using already existing extensions methods, rather than defining own ones.
+
         }
     }
 }
