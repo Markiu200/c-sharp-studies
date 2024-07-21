@@ -1,6 +1,6 @@
 ﻿namespace NspKprint
 {
-    internal class Kprint
+    public class Kprint
     {
         /// <summary>
         /// Prints nicely formated title with two new lines on top. 
