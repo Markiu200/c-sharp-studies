@@ -1,4 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿using System.Net.NetworkInformation;
+
+namespace Moshless.Tests
+{
+    // https://learn.microsoft.com/en-us/dotnet/core/tutorials/testing-library-with-visual-studio?pivots=dotnet-8-0
+    // It took many tries to get Microsoft.VisualStudio.TestTools.UnitTesting working. It seems that it will work only with certain
+    // project configuration:
+    /*
+    <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -19,3 +27,15 @@
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 </Project>
+    */
+
+    [TestClass]
+    public class CamelCaserTest
+    {
+        [TestMethod]
+        public void TestMethod1()
+        {
+
+        }
+    }
+}
