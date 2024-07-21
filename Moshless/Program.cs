@@ -1,10 +1,12 @@
-﻿namespace Moshless
+﻿using Moshless.Pages;
+
+namespace Moshless
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Study01.Run();
         }
     }
 }
