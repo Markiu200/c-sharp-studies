@@ -32,10 +32,29 @@ namespace Moshless.Tests
     [TestClass]
     public class CamelCaserTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
+        // https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.assert.areequal?view=visualstudiosdk-2022
+        // https://www.softwaretestingmagazine.com/knowledge/how-to-choose-the-right-name-for-unit-tests/
 
+        [TestMethod]
+        public void CamelCase_ValidInputs_StringReturned()
+        {
+            // https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2?view=net-8.0
+            Dictionary<String, String> dict = new Dictionary<String, String>
+            {
+                { "This Kasmok smok", "thisKasmokSmok" },
+                { "123", "123" },
+                { "iNVERTCAPS", "invertcaps" },
+                { "a 1b 43 e E rR", "a1b43EERr" },
+                { "mORE INVERTED CPS", "moreInvertedCps" }
+            };
+            foreach (KeyValuePair<String, String> pair in dict)
+            {
+                string camelCased = pair.Key.CamelCase();
+
+                // (expected, got, message)
+                Assert.AreEqual<String>(pair.Value, camelCased, 
+                    $"For \"{pair.Key}\" got \"{camelCased}\", expected {pair.Value}");
+            }
         }
     }
 }
