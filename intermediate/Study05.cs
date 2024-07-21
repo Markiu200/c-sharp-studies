@@ -10,6 +10,9 @@ namespace intermediate.Study05
              * **** Exception handling ****
              */
 
+            // https://learn.microsoft.com/en-us/dotnet/core/introduction
+            // "A crashed app is more reliable and diagnosable than an app with undefined behavior."
+
             // Good practice is to have entire base class / file inside try catch block. That would be Program.Main() in this case.
 
             StreamReader stream = null;
