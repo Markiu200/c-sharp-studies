@@ -7,7 +7,8 @@ namespace Moshless.Pages
     {
         public static void Run()
         {
-            Console.WriteLine("a 1b 43 e E rR".CamelCase());
+            // Everything is in CamelCaser and CamelCaserTest files, see there.
+            Console.WriteLine("  [ -=  R=".CamelCase());
         }
     }
 }

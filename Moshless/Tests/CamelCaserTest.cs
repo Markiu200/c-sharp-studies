@@ -45,7 +45,9 @@ namespace Moshless.Tests
                 { "123", "123" },
                 { "iNVERTCAPS", "invertcaps" },
                 { "a 1b 43 e E rR", "a1b43EERr" },
-                { "mORE INVERTED CPS", "moreInvertedCps" }
+                { "mORE INVERTED CPS", "moreInvertedCps" },
+                { "  ,. - ", "" },
+                { "  [ -=  R=", "r" }
             };
             foreach (KeyValuePair<String, String> pair in dict)
             {
@@ -55,6 +57,30 @@ namespace Moshless.Tests
                 Assert.AreEqual<String>(pair.Value, camelCased, 
                     $"For \"{pair.Key}\" got \"{camelCased}\", expected {pair.Value}");
             }
+        }
+
+        [TestMethod]
+        public void CamelCase_StringEmpty_StringEmptyReturned()
+        {
+            string camelCased = String.Empty.CamelCase();
+            // (expected, got, message)
+            Assert.AreEqual<String>(String.Empty, camelCased,
+                $"For String.Empty got \"{camelCased}\", expected String.Empty");
+        }
+
+        // https://stackoverflow.com/questions/933613/how-do-i-use-assert-to-verify-that-an-exception-has-been-thrown-with-mstest
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "Cannot perform CamelCasing on null.")]
+        public void CamelCase_NullInput_ExceptionThrown()
+        {
+            String? str = null;
+            string camelCased = str.CamelCase();
+
+            // Func<String, String> func = CamelCaser.CamelCase;
+
+            // (expected, got, message)
+            // Assert.ThrowsException<ArgumentNullException>(func(null);
+            str.CamelCase();
         }
     }
 }
