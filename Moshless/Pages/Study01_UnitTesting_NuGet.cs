@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using intermediate;
 using NspKprint;
-using System.Security.Cryptography;
+using System.Collections;
 
 namespace Moshless.Pages.Study01
 {
@@ -118,13 +118,227 @@ namespace Moshless.Pages.Study01
             // Strings are kind of like records.
             // Also, "record" is one of types that can be used with "with" keyword (see above)
             // Caution: Developers expect records to be immutable. As a consequence, mutable records can lead to confusion and error-prone code.
-            
-            
+
+
+
+            // Going through versions of .NET and what are the possibilites - reading about them and leaving here links and notes.
+            // No examples here, but it is good to know that these things exists and where to look for info about them..
+            /** Tuples **/
+            // Basically a way to have more data in one variable. These are mutable, unlike tuples in Python.
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples
+            //
+            /** Span<T> **/
+            // How to manipulate thing in memory without making copies of it (something like that).
+            // https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-2-1
+            // Nick Chapsas - What is Span in C# and why you should be using it 
+            // https://www.youtube.com/watch?v=FM5dpxJMULY
+            // https://stackoverflow.com/questions/47321691/what-is-the-difference-between-spant-and-memoryt-in-c-sharp-7-2
+            //
+            /** Why immutability? **/
+            // Zoran Horvat - Immutable Design: Why You Should Care
+            // https://www.youtube.com/watch?v=jjf5nEmDjaE
+            //
+            /** ref struct **/
+            // struct that can be allocated only on stack.
+            // Greg Kalapos - ref structs in C# 7.2 - .NET Concept of the Week - Episode 16
+            // https://www.youtube.com/watch?v=IPxOxPfAg4s
+            //
+            /** Ranges and Indices (Index) **/
+            // https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0
+            //
+            /** Unsafe code, pointer types, and function pointers **/
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/unsafe-code#function-pointers
+            // https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-version-history#c-version-9
+            // dispose / yield / iterators
+            //
+            /** Named and Optional Arguments **/
+            // Like in Python, keyword arguments are a thing - (variable: value)
+            // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments
+            //
+            /** Pattern matching **/
+            // https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching
+
+
+
+
+
 
             /*
-             *  Tuples
+             *  Iterators - old examples from C# 2.0, and new from 8.0
              */
-            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/value-tuples
+            // You cannot use access modifiers on Enumerator related methods, they default to public.
+            // New version of enumerators do not use "yield".
+
+            Kprint.Title("Iterators (old):");
+            foreach (int number in SomeNumbers())
+            {
+                Console.Write(number.ToString() + " ");
+            }
+            // Output: 3 5 8
+
+            Console.WriteLine(Environment.NewLine);
+
+            foreach (int number in EvenSequence(5, 18))
+            {
+                Console.Write(number.ToString() + " ");
+            }
+            // Output: 6 8 10 12 14 16 18
+
+            Console.WriteLine(Environment.NewLine);
+
+            DaysOfTheWeek days = new DaysOfTheWeek();
+            foreach (string day in days)
+            {
+                Console.Write(day + " ");
+            }
+            // Output: Sun Mon Tue Wed Thu Fri Sat
+
+            // NEW ENUMERATION
+            // https://learn.microsoft.com/en-us/dotnet/api/system.collections.ienumerator?view=net-8.0
+            Console.WriteLine(Environment.NewLine);
+            Kprint.Title("Iterators (new):");
+            Person[] peopleArray = new Person[3]
+            {
+                new Person("John", "Smith"),
+                new Person("Jim", "Johnson"),
+                new Person("Sue", "Rabon"),
+            };
+
+            People peopleList = new People(peopleArray);
+            foreach (Person p in peopleList)
+                Console.WriteLine(p.firstName + " " + p.lastName);
+        }
+
+        // OLD ENUMERATION
+        public static System.Collections.IEnumerable SomeNumbers()
+        {
+            yield return 3;
+            yield return 5;
+            yield return 8;
+        }
+
+        // OLD ENUMERATION
+        public static System.Collections.Generic.IEnumerable<int> EvenSequence(int firstNumber, int lastNumber)
+        {
+            // Yield even numbers in the range.
+            for (int number = firstNumber; number <= lastNumber; number++)
+            {
+                if (number % 2 == 0)
+                {
+                    yield return number;
+                }
+            }
+        }
+
+        // OLD ENUMERATION
+        public class DaysOfTheWeek : IEnumerable
+        {
+            private string[] days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                for (int index = 0; index < days.Length; index++)
+                {
+                    // Yield each day of the week.
+                    yield return days[index];
+                }
+            }
+        }
+
+        // NEW ENUMERATION
+        // Simple business object.
+        public class Person
+        {
+            public Person(string fName, string lName)
+            {
+                this.firstName = fName;
+                this.lastName = lName;
+            }
+
+            public string firstName;
+            public string lastName;
+        }
+
+        // NEW ENUMERATION
+        // Collection of Person objects. This class
+        // implements IEnumerable so that it can be used
+        // with ForEach syntax
+        public class People : IEnumerable
+        {
+            private Person[] _people;
+            public People(Person[] pArray)
+            {
+                _people = new Person[pArray.Length];
+
+                for (int i = 0; i < pArray.Length; i++)
+                {
+                    _people[i] = pArray[i];
+                }
+            }
+
+            // Implementation for the GetEnumerator method.
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return (IEnumerator)GetEnumerator();
+            }
+
+            public PeopleEnum GetEnumerator()
+            {
+                return new PeopleEnum(_people);
+            }
+        }
+
+        // NEW ENUMERATION
+        // https://learn.microsoft.com/en-us/dotnet/api/system.collections.ienumerator?view=net-8.0
+        // When you implement IEnumerable, you must also implement IEnumerator.
+        public class PeopleEnum : IEnumerator
+        {
+            public Person[] _people;
+
+            // Enumerators are positioned before the first element
+            // until the first MoveNext() call.
+            int position = -1;
+
+            public PeopleEnum(Person[] list)
+            {
+                _people = list;
+            }
+
+            public bool MoveNext()
+            {
+                position++;
+                return (position < _people.Length);
+            }
+
+            // The Reset method is provided for COM interoperability and does not need to be fully implemented;
+            // instead, the implementer can throw a NotSupportedException.
+            public void Reset()
+            {
+                position = -1;
+            }
+
+            object IEnumerator.Current
+            {
+                get
+                {
+                    return Current;
+                }
+            }
+
+            public Person Current
+            {
+                get
+                {
+                    try
+                    {
+                        return _people[position];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+            }
         }
     }
 }
