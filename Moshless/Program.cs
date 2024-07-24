@@ -1,4 +1,4 @@
-﻿using Moshless.Pages;
+﻿using Moshless.Pages.Study01;
 
 namespace Moshless
 {
