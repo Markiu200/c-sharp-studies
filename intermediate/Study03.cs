@@ -14,7 +14,7 @@ namespace intermediate.Study03
             var genTest2 = new GenericOneType<BetterKasmok>();
             genTest2.someField = new BetterKasmok("Kasmok", new DateTime(1922, 2, 2));
 
-            // With generic methods type is not specified in <> lika above - required type is just passed as an argument, 
+            // With generic methods type is not specified in <> like above - required type is just passed as an argument, 
             // and with that type is determined.
             Kprint.Title("Testing method-level generics:");
             var genTest3 = new GenericAtMethod();
