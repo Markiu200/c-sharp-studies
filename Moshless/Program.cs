@@ -1,4 +1,5 @@
 ﻿using Moshless.Pages.Study01;
+using Moshless.Pages.Study02;
 
 namespace Moshless
 {
@@ -6,7 +7,8 @@ namespace Moshless
     {
         static void Main(string[] args)
         {
-            Study01.Run();
+            //Study01.Run();
+            Study02.Run();
             Console.ReadKey();
         }
     }
