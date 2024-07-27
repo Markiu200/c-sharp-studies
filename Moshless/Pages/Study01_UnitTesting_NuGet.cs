@@ -144,7 +144,7 @@ namespace Moshless.Pages.Study01
             // https://www.youtube.com/watch?v=IPxOxPfAg4s
             //
             /** Ranges and Indices (Index) **/
-            // https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0
+            // https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#ranges-and-indices
             //
             /** Unsafe code, pointer types, and function pointers **/
             // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/unsafe-code#function-pointers
@@ -156,7 +156,30 @@ namespace Moshless.Pages.Study01
             // https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments
             //
             /** Pattern matching **/
+            // "is" 
             // https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/pattern-matching
+            //
+            /** Generic math **/
+            // https://learn.microsoft.com/en-us/dotnet/standard/generics/math
+            //
+            /** "new" switch staritng C# 8 - switch expression **/
+            // returns whatever it was evaluated for, looks more like lambda.
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression
+            // https://justjoin.it/blog/nowy-switch-w-c-8-0-jak-dziala-property-pattern
+            //
+            /** [list] Patterns **/
+            // For comparing arrays to patterns
+            // https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns#list-patterns
+            //
+            /** Primary constructor **/
+            // Adding a primary constructor to a class prevents the compiler from declaring an implicit parameterless constructor.
+            // https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12#primary-constructors
+            //
+            /** COM **//
+            // https://learn.microsoft.com/en-us/windows/win32/com/component-object-model--com--portal
+            //
+            /** Factory pattern **/
+            // https://www.youtube.com/watch?v=SLEu6rNdJj0
 
 
 
