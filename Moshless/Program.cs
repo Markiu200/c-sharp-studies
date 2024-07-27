@@ -6,7 +6,7 @@ namespace Moshless
     {
         static void Main(string[] args)
         {
-            Study01_UnitTesting_NuGet.Run();
+            Study01.Run();
             Console.ReadKey();
         }
     }

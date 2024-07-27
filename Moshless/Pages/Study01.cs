@@ -35,7 +35,7 @@ namespace Moshless.Pages.Study01
     */
     // It also generates != and == operators, ToString overload, Equals method, GetHashCode orerride, and others (see YT video).
 
-    internal static class Study01_UnitTesting_NuGet
+    internal static class Study01
     {
         public static void Run()
         {
