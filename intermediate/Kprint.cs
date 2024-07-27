@@ -10,6 +10,10 @@
         {
             Console.WriteLine($"\n\n  ---- {title} ----");
         }
+        public static void Title()
+        {
+            Console.WriteLine("\n\n  --------------");
+        }
 
         /// <summary>
         /// Prints nicely formated title. 
@@ -18,6 +22,10 @@
         public static void FTitle(string title)
         {
             Console.WriteLine($"  ---- {title} ----");
+        }
+        public static void FTitle()
+        {
+            Console.WriteLine("  --------------");
         }
     }
 }
