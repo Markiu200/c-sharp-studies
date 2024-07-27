@@ -42,7 +42,7 @@ namespace Moshless.Pages.Study01
             /*
              *  Tests
              */
-    Kprint.FTitle("Tests:");
+            Kprint.FTitle("Tests:");
             // Everything is in CamelCaser and CamelCaserTest files, see there.
             Console.WriteLine("  [ -=  R=".CamelCase());
 
@@ -175,7 +175,7 @@ namespace Moshless.Pages.Study01
             // Adding a primary constructor to a class prevents the compiler from declaring an implicit parameterless constructor.
             // https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-12#primary-constructors
             //
-            /** COM **//
+            /** COM **/
             // https://learn.microsoft.com/en-us/windows/win32/com/component-object-model--com--portal
             //
             /** Factory pattern **/
