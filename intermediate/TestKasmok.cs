@@ -134,6 +134,11 @@
         /// </summary>
         ~TestKasmok()
         {
+            // C# Academy - IDisposable and Finalizers
+            // https://www.youtube.com/watch?v=nQCoy9csNk4
+            // https://stackoverflow.com/questions/732864/finalize-vs-dispose
+            // https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-object-finalize
+            // Long story short, Finalizer is here if Dispose is not invoked. Do use Dispose method and do not rely on Finalize.
             Console.WriteLine("Finalizer of object Kasmok was reached...");
         }
 

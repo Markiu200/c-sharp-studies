@@ -20,6 +20,7 @@
             Console.WriteLine("Make note how static initializer was not triggered second time.");
 
             Study01.Title(@"Finalizer test, might show nothing...:");
+            // There's a difference between "finalizer" and "Dispose" method, see TestKasmok for annotations.
             kasmok2 = null;
             GC.Collect();
             GC.WaitForPendingFinalizers();
