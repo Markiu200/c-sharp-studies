@@ -6,9 +6,11 @@ namespace Moshless.Pages.Study02
     {
         public static void Run()
         {
+            Kprint.FTitle("Class / struct difference test:");
             /*
              * https://learn.microsoft.com/en-us/dotnet/standard/base-types/common-type-system
              * Testing struct behavior, knowing that struct is implicitly derived from class.
+             * For a value type, you should always override Equals, because tests for equality that rely on reflection offer poor performance.
              */
             TestClass testClass = new TestClass { text = "testClass", number = 1 };
             TestStruct testStruct = new TestStruct { text = "testStruct", number = 1 };
@@ -19,14 +21,47 @@ namespace Moshless.Pages.Study02
 
 
 
+            Kprint.Title("Anonymous type / Tuple / ValueTuple example:");
+
+
+
+            /*
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/choosing-between-anonymous-and-tuple
+             * The ValueTuple types are mutable, whereas Tuple are read-only. Anonymous types can be used in expression trees, while tuples cannot.
+             * Tuple = class, ValueTuple = struct
+             */
+            var dates = new[]
+            {
+                DateTime.UtcNow.AddHours(-1),
+                DateTime.UtcNow,
+                DateTime.UtcNow.AddHours(1),
+            };
+            foreach (var anonymous in
+                         dates.Select(
+                             date => new { Formatted = $"{date:MMM dd, yyyy hh:mm zzz}", date.Ticks }))
+            {
+                Console.WriteLine($"Ticks: {anonymous.Ticks}, formatted: {anonymous.Formatted}");
+            }
+            foreach (var tuple in
+            dates.Select(
+                date => new Tuple<string, long>($"{date:MMM dd, yyyy hh:mm zzz}", date.Ticks)))
+            {
+                Console.WriteLine($"Ticks: {tuple.Item2}, formatted: {tuple.Item1}");
+            }
+            foreach (var (formatted, ticks) in
+            dates.Select(
+                date => (Formatted: $"{date:MMM dd, yyyy at hh:mm zzz}", date.Ticks)))
+            {
+                Console.WriteLine($"Ticks: {ticks}, formatted: {formatted}");
+            }
+
+
+
             Kprint.Title();
-            
 
 
-            int codePoint = 1067;
-            IConvertible iConv = codePoint;
-            char ch = iConv.ToChar(null);
-            Console.WriteLine("Converted {0} to {1}.", codePoint, ch);
+
+            Console.WriteLine(testClass.GetType());
         } 
     }
 }
