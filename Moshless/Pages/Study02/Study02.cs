@@ -1,4 +1,5 @@
 ﻿using NspKprint;
+using System.Collections.Specialized;
 
 namespace Moshless.Pages.Study02
 {
@@ -72,6 +73,35 @@ namespace Moshless.Pages.Study02
              */
             Console.WriteLine(testClass.ToString());
             Console.WriteLine(testStruct.ToString());
+
+
+
+            Kprint.Title("NameValueCollection():");
+
+
+
+            /*
+             * NameValueCollection
+             * 
+             * https://learn.microsoft.com/en-us/dotnet/standard/collections/selecting-a-collection-class
+             * https://www.c-sharpcorner.com/UploadFile/d3e4b1/practical-usage-of-namevaluecollection-in-C-Sharp-part1/
+             */
+            NameValueCollection collection = new NameValueCollection();
+            collection.Add("Lajapathy", ":INQ");
+            collection.Add("partiban", "WCF");
+            collection.Add("partiban", "Silverlight");
+            collection.Add("Sathiya", "C#");
+            collection.Add("Sathiya", "dot net");
+            collection.Add("Sangita", "C#");
+            foreach (string _key in collection.AllKeys)
+            {
+                Console.Write(_key + ",");
+            }
+            Console.WriteLine();
+            Console.Write($"Value : {collection["Sathiya"]}");
+            Console.WriteLine();
+            string key = collection.GetKey(1);
+            Console.Write($"Value : {key}");
         } 
     }
 }
