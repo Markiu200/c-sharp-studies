@@ -57,11 +57,21 @@ namespace Moshless.Pages.Study02
 
 
 
-            Kprint.Title();
+            Kprint.Title("ToSting() override:");
 
 
 
-            Console.WriteLine(testClass.GetType());
+            /*
+             * https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-object-tostring
+             * Also formatting:
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/formatting-types
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-numeric-format-strings
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-date-and-time-format-strings
+             * https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
+             */
+            Console.WriteLine(testClass.ToString());
+            Console.WriteLine(testStruct.ToString());
         } 
     }
 }
