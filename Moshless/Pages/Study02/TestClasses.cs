@@ -29,4 +29,17 @@
             test.text = "changed";
         }
     }
+
+    public class Boi : IComparable, IEquatable<Boi>
+    {
+        public int CompareTo(object? obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Equals(Boi? other)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
