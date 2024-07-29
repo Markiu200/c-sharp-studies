@@ -180,7 +180,12 @@ namespace Moshless.Pages.Study01
             //
             /** Factory pattern **/
             // https://www.youtube.com/watch?v=SLEu6rNdJj0
-
+            //
+            /** DynamicMethod Class **/
+            // https://learn.microsoft.com/en-us/dotnet/api/system.reflection.emit.dynamicmethod?view=net-8.0
+            //
+            /** Collections and Data Structures **/
+            // https://learn.microsoft.com/en-us/dotnet/standard/collections/
 
 
 
