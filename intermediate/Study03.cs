@@ -7,6 +7,11 @@ namespace intermediate.Study03
     {
         public static void Run()
         {
+            /*
+             * Generics
+             * 
+             * https://learn.microsoft.com/en-us/dotnet/standard/generics/
+             */
             // Simple testing of generics
             Kprint.FTitle("Testing simple generics:");
             var genTest1 = new GenericOneType<int>();
@@ -90,6 +95,8 @@ namespace intermediate.Study03
             // For simplicity.
             // Say you want a method to check if kasmok's name is "Kasmok". 
             // You'd need to write an entire method and then pass BetterKasmok to it.
+            // https://learn.microsoft.com/en-us/dotnet/standard/delegates-lambdas
+            // "lambda expression is just another way of specifying a delegate"
             var testKasmok2 = new BetterKasmok("Kasmok", new DateTime(1900, 9, 23));
             var checkKasmoks = new List<BetterKasmok> { testKasmok1, testKasmok2};
             foreach (var kasmok in checkKasmoks)
