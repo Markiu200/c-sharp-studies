@@ -177,6 +177,7 @@ namespace Moshless.Pages.Study01
             //
             /** COM **/
             // https://learn.microsoft.com/en-us/windows/win32/com/component-object-model--com--portal
+            // https://learn.microsoft.com/en-us/dotnet/standard/metadata-and-self-describing-components
             //
             /** Factory pattern **/
             // https://www.youtube.com/watch?v=SLEu6rNdJj0
@@ -189,7 +190,7 @@ namespace Moshless.Pages.Study01
 
 
 
-            
+
 
             /*
              *  Iterators - old examples from C# 2.0, and new from 8.0
