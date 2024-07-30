@@ -1,5 +1,9 @@
 ﻿using NspKprint;
 using System.Collections.Specialized;
+using System.Reflection;
+
+// [assembly:AssemblyTitle("Attribute given for entire assembly")]
+// Though it throws Error	CS0579	Duplicate 'System.Reflection.AssemblyTitleAttribute' attribute
 
 namespace Moshless.Pages.Study02
 {
@@ -93,15 +97,59 @@ namespace Moshless.Pages.Study02
             collection.Add("Sathiya", "C#");
             collection.Add("Sathiya", "dot net");
             collection.Add("Sangita", "C#");
-            foreach (string _key in collection.AllKeys)
+            foreach (string? _key in collection.AllKeys)
             {
                 Console.Write(_key + ",");
             }
             Console.WriteLine();
             Console.Write($"Value : {collection["Sathiya"]}");
             Console.WriteLine();
-            string key = collection.GetKey(1);
+            string key = collection.GetKey(1)!;
             Console.Write($"Value : {key}");
-        } 
+
+
+
+            Kprint.Title("Attributes:");
+
+
+
+            /*
+             * Attributes
+             * 
+             * https://learn.microsoft.com/en-us/dotnet/standard/attributes/
+             */
+            Console.WriteLine("Throws warning because of [Obsolete] attribute");
+            Attributes.ObsoleteThing();
+
+            Console.WriteLine("Custom attributes");
+            // Try to get the attribute
+            
+            // Get all methods in this class, and put them
+            // in an array of System.Reflection.MemberInfo objects.
+            MemberInfo[] MyMemberInfo = typeof(Study02).GetMethods();
+
+            // Loop through all methods in this class that are in the
+            // MyMemberInfo array.
+            // (line below is for checking for class-level attribute, but I left it here for reference and inital value of myAtt.
+            // https://learn.microsoft.com/en-us/dotnet/standard/attributes/retrieving-information-stored-in-attributes
+            MyAttribute myAtt = (MyAttribute)Attribute.GetCustomAttribute(typeof(Study02), typeof(MyAttribute))!;
+
+            for (int i = 0; i < MyMemberInfo.Length; i++)
+            {
+                myAtt = (MyAttribute)Attribute.GetCustomAttribute(MyMemberInfo[i], typeof(MyAttribute))!;
+                if (myAtt == null)
+                {
+                    Console.WriteLine("The attribute was not found.");
+                }
+                else
+                {
+                    // Get the myValue value.
+                    Console.WriteLine("The myValue Attribute is: {0}.", myAtt.myValue);
+                }
+            }
+        }
+
+        [MyAttribute(true)] // compiler greys out "Attribute", as you can use them without "Attribute" part, even if it's in name.s
+        public static void CustomAttrFunc() { }
     }
 }
