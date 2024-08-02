@@ -27,7 +27,7 @@
         {
             BetterKasmok? whiteSmo = sender as BetterKasmok;
             if (whiteSmo is not null)
-                Console.Write($"{whiteSmo.Name} turned the lights out! "); 
+                Console.Write($"{this.Name} sees {whiteSmo.Name} turned the lights out! "); 
                 MakeSound_override();
         }
 
