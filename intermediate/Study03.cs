@@ -40,6 +40,10 @@ namespace intermediate.Study03
             var kasmokDoer = new DealWithKasmok();
             var kasmokActions = new ActionsOnKasmoks();
 
+            // https://learn.microsoft.com/en-us/dotnet/standard/events/
+            // (...) A delegate is thus equivalent to a type-safe function pointer or a callback.
+            // A delegate declaration is sufficient to define a delegate class.
+            //
             // This looks different and weird and does not behave like anything else.
             // Instance of delegate is created here.
             //
