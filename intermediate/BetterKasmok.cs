@@ -82,6 +82,9 @@
                 // https://learn.microsoft.com/en-us/dotnet/standard/events/
                 // https://stackoverflow.com/questions/790344/why-is-it-useful-to-inherit-from-eventargs
                 LightsOut(this, EventArgs.Empty);
+
+                // or
+                // LightsOut?.Invoke(this, EventArgs.Empty);
         }
 
         /*
