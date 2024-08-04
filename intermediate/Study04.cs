@@ -13,6 +13,7 @@ namespace intermediate.Study04
 
             // Events exercises:
             Kprint.FTitle("Events");
+            // https://learn.microsoft.com/en-us/dotnet/standard/events/
             // Events are basically using Delegates as properties.
             // You have a object that will be "publisher" - one who emits event,
             // and objects that will subscribe to that - "subscriber".
