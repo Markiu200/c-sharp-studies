@@ -142,8 +142,11 @@ namespace intermediate
             // https://learn.microsoft.com/en-us/dotnet/fundamentals/runtime-libraries/system-object-finalize
             // https://www.youtube.com/watch?v=L77mg0PW6z8&list=PLbZiDcbzoonMl3qZM94-1V0rfpgWZ0V0-&index=13
             // Long story short, Finalizer is here if Dispose is not invoked. Do use Dispose method and do not rely on Finalize.
-            // you cannot make any assumptions about the order in which your objects will be finalised.
-            // you should never try to use a referenced object in your finaliser, because it might already be finalised.
+            // - you cannot make any assumptions about the order in which your objects will be finalised.
+            // - you should never try to use a referenced object in your finaliser, because it might already be finalised.
+            // - Finalisers are called in random order
+            // - objects with finalisers always end up in generation 1 and sometimes in generation 2
+            // - When a process ends, some finalisers might not get called
             Console.WriteLine("Finalizer of object Kasmok was reached...");
         }
 
