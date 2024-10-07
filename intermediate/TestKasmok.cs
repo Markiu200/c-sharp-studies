@@ -148,6 +148,9 @@ namespace intermediate
             // - objects with finalisers always end up in generation 1 and sometimes in generation 2
             // - When a process ends, some finalisers might not get called
             Console.WriteLine("Finalizer of object Kasmok was reached...");
+            // Doing that actually keeps object in generation one of Garbage Collector, making it less efficient overall.
+            // Perhaps it's best not to use finalizers unless really needed. Preferred is IDisposable thing.
+            // https://www.youtube.com/watch?v=L77mg0PW6z8&list=PLbZiDcbzoonMl3qZM94-1V0rfpgWZ0V0-&index=13
         }
 
         /// <summary>
